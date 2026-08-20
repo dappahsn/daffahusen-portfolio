@@ -88,7 +88,7 @@ export default function HeroSection() {
         </div>
 
         {/* Profile Image with Orbiting Lego Car & Anti-gravity Floating Motion */}
-        <div className="md:col-span-5 relative pb-10 sm:pb-8 animate-float-hero">
+        <div className="md:col-span-5 relative animate-float-hero">
           <div
             ref={photoBoxRef}
             className="relative w-full aspect-[3/4] md:aspect-square border-4 border-on-surface brick-shadow bg-brick-blue select-none group"

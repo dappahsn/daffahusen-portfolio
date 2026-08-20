@@ -168,12 +168,17 @@ export default function LegoCarOrbit({ targetRef }) {
     };
   }, [targetRef]);
 
-  // Handle Honk / Turbo / Click Interaction
+  // Handle Click on Lego Car (Switches Car + Turbo Boost + Honk + Speech Bubble)
   const triggerCarInteraction = useCallback(
     (e) => {
       if (e) e.stopPropagation();
 
-      // Trigger Turbo boost for 2 seconds
+      // Switch to next car preset
+      const nextIndex = (carIndex + 1) % CAR_PRESETS.length;
+      setCarIndex(nextIndex);
+      const nextCar = CAR_PRESETS[nextIndex];
+
+      // Trigger Turbo boost for 2.2 seconds
       setIsTurbo(true);
       if (turboTimeoutRef.current) clearTimeout(turboTimeoutRef.current);
       turboTimeoutRef.current = setTimeout(() => {
@@ -181,26 +186,19 @@ export default function LegoCarOrbit({ targetRef }) {
       }, 2200);
 
       // Play audio
-      playCarAudio(currentCar.hornFreq, isTurbo ? "turbo" : "horn");
+      playCarAudio(nextCar.hornFreq, "turbo");
 
-      // Show random playful speech bubble
-      const msg = SPEECH_MESSAGES[Math.floor(Math.random() * SPEECH_MESSAGES.length)];
-      setSpeechBubble(msg);
+      // Show playful speech bubble with new car name
+      const customMsg = `${nextCar.flair} ${nextCar.name}!`;
+      setSpeechBubble(customMsg);
 
       if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
       speechTimeoutRef.current = setTimeout(() => {
         setSpeechBubble(null);
       }, 2000);
     },
-    [currentCar, isTurbo]
+    [carIndex]
   );
-
-  // Switch Car Skin
-  const nextCarSkin = useCallback((e) => {
-    if (e) e.stopPropagation();
-    setCarIndex((prev) => (prev + 1) % CAR_PRESETS.length);
-    playCarAudio([587, 880], "horn");
-  }, []);
 
   // Main Animation Loop
   useEffect(() => {
@@ -643,29 +641,6 @@ export default function LegoCarOrbit({ targetRef }) {
         {isTurbo && (
           <div className="absolute -inset-2 rounded-lg bg-yellow-400/20 blur-sm pointer-events-none animate-ping" />
         )}
-      </div>
-
-      {/* Lego Brick Switcher below the photo box */}
-      <div className="absolute -bottom-6 sm:-bottom-7 left-1/2 -translate-x-1/2 pointer-events-auto flex items-center justify-center z-30">
-        <button
-          onClick={nextCarSkin}
-          className="relative inline-flex items-center gap-2 px-3.5 py-1.5 bg-brick-yellow text-on-surface border-3 border-on-surface shadow-[3px_3px_0px_0px_#1a1c1c] text-[10px] sm:text-[11px] font-label-caps font-bold uppercase hover:-translate-y-1 hover:shadow-[5px_5px_0px_0px_#1a1c1c] active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_#1a1c1c] transition-all duration-200 cursor-pointer whitespace-nowrap select-none"
-          title="Click to change Lego Car style"
-        >
-          {/* Lego Studs on top of the brick */}
-          <div className="absolute -top-2 left-0 w-full flex justify-around px-1.5 pointer-events-none">
-            <span className="w-2.5 h-2.5 rounded-full bg-brick-yellow border-2 border-on-surface" />
-            <span className="w-2.5 h-2.5 rounded-full bg-brick-yellow border-2 border-on-surface" />
-            <span className="w-2.5 h-2.5 rounded-full bg-brick-yellow border-2 border-on-surface" />
-            <span className="w-2.5 h-2.5 rounded-full bg-brick-yellow border-2 border-on-surface" />
-          </div>
-
-          <span>{currentCar.flair}</span>
-          <span>{currentCar.name}</span>
-          <span className="bg-white border-2 border-on-surface text-primary px-1.5 py-0.5 text-[9px] font-bold">
-            SWITCH ⇄
-          </span>
-        </button>
       </div>
     </div>
   );
