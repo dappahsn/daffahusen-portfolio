@@ -81,7 +81,7 @@ export default function CvModal({ isOpen, onClose }) {
             <a
               href={pdfUrl}
               download="CV_Muhammad_Daffa_Husen.pdf"
-              className="inline-flex items-center gap-1.5 px-5 py-2 bg-brick-yellow text-on-surface border-2 border-on-surface font-button-text text-xs font-bold uppercase brick-btn relative cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-5 py-2 bg-primary text-on-primary border-2 border-on-surface font-button-text text-xs font-bold uppercase brick-btn relative cursor-pointer"
             >
               <span className="material-symbols-outlined text-[16px]">
                 download

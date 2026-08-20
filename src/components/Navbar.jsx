@@ -62,11 +62,14 @@ export default function Navbar() {
       <header className="fixed top-0 w-full z-50 bg-surface border-b-4 border-on-surface">
         <div className="flex justify-between items-center w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 py-4">
           <a
-            className="text-headline-md font-headline-md font-black tracking-tighter text-primary"
+            className="relative inline-flex items-center text-headline-md font-headline-md font-black tracking-tighter text-primary group select-none cursor-pointer"
             href="#home"
             onClick={() => setActiveSection("#home")}
           >
-            DAFFA HUSEN
+            <span>DAFFA HUSEN</span>
+            <span className="relative -top-2.5 ml-1 text-[11px] font-label-caps font-bold px-1.5 py-0.5 bg-brick-yellow text-on-surface border-2 border-on-surface shadow-[2px_2px_0px_0px_#1a1c1c] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-200 uppercase leading-none">
+              . dev
+            </span>
           </a>
 
           {/* Desktop Nav */}
@@ -87,37 +90,24 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Action Buttons (Preview CV + Hire Now) */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* Preview CV Button */}
+          {/* Action Button (Download CV) */}
+          <div className="hidden md:flex items-center">
+            {/* Download CV Button */}
             <button
               type="button"
               onClick={() => setShowCvModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-3 font-button-text text-button-text text-on-surface bg-brick-yellow brick-btn relative uppercase cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-3 font-button-text text-button-text text-on-primary bg-primary brick-btn relative uppercase cursor-pointer"
             >
               <div className="absolute -top-2 left-0 w-full flex justify-around px-2 pointer-events-none">
-                <span className="w-3 h-3 rounded-full bg-brick-yellow border-2 border-on-surface" />
-                <span className="w-3 h-3 rounded-full bg-brick-yellow border-2 border-on-surface" />
+                <span className="w-3 h-3 rounded-full bg-primary border-2 border-on-surface" />
+                <span className="w-3 h-3 rounded-full bg-primary border-2 border-on-surface" />
+                <span className="w-3 h-3 rounded-full bg-primary border-2 border-on-surface" />
               </div>
               <span className="material-symbols-outlined text-[18px]">
-                description
+                download
               </span>
-              CV
+              DOWNLOAD CV
             </button>
-
-            {/* CTA Button */}
-            <a
-              className="inline-flex items-center justify-center px-5 py-3 font-button-text text-button-text text-on-primary bg-primary brick-btn relative uppercase cursor-pointer"
-              href="#contact"
-              onClick={() => setActiveSection("#contact")}
-            >
-              <div className="absolute -top-2 left-0 w-full flex justify-around px-2 pointer-events-none">
-                <span className="w-3 h-3 rounded-full bg-primary border-2 border-on-surface" />
-                <span className="w-3 h-3 rounded-full bg-primary border-2 border-on-surface" />
-                <span className="w-3 h-3 rounded-full bg-primary border-2 border-on-surface" />
-              </div>
-              HIRE Now!
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -155,28 +145,17 @@ export default function Navbar() {
             <div className="flex flex-col gap-3 mt-2">
               <button
                 type="button"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 font-button-text text-button-text text-on-surface bg-brick-yellow brick-btn relative uppercase"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 font-button-text text-button-text text-on-primary bg-primary brick-btn relative uppercase"
                 onClick={() => {
                   setShowCvModal(true);
                   setMenuOpen(false);
                 }}
               >
                 <span className="material-symbols-outlined text-[18px]">
-                  description
+                  download
                 </span>
-                PREVIEW CV
+                DOWNLOAD CV
               </button>
-
-              <a
-                className="inline-flex items-center justify-center px-6 py-3 font-button-text text-button-text text-on-primary bg-primary brick-btn relative uppercase"
-                href="#contact"
-                onClick={() => {
-                  setActiveSection("#contact");
-                  setMenuOpen(false);
-                }}
-              >
-                HIRE Now!
-              </a>
             </div>
           </div>
         )}

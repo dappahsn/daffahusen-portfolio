@@ -81,25 +81,33 @@ export default function ContactSection() {
             Have a project in mind, an opportunity to discuss, or just want to connect? Send me a message or find me on social media!
           </p>
 
-          <div className="flex flex-col gap-2 mb-8 text-on-surface">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary text-[20px]">
-                mail
-              </span>
-              <a
-                href={`mailto:${personal.email}`}
-                className="font-button-text hover:underline text-sm"
-              >
-                {personal.email}
-              </a>
+          {/* Hire Me Direct Gmail Action Button */}
+          <a
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=daffahusen10@gmail.com&su=${encodeURIComponent(
+              "Let's Unlock Your Potential"
+            )}&body=${encodeURIComponent(
+              "Hi Daffa,\n\nI saw your portfolio and would love to connect with you regarding..."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-5 py-3.5 bg-brick-yellow text-on-surface border-4 border-on-surface brick-btn mb-8 relative select-none cursor-pointer group"
+            title="Click to send email directly via Gmail"
+          >
+            <div className="absolute -top-2.5 left-0 w-full flex justify-around px-3 pointer-events-none">
+              <span className="w-3 h-3 rounded-full bg-brick-yellow border-2 border-on-surface" />
+              <span className="w-3 h-3 rounded-full bg-brick-yellow border-2 border-on-surface" />
+              <span className="w-3 h-3 rounded-full bg-brick-yellow border-2 border-on-surface" />
             </div>
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-brick-blue text-[20px]">
-                location_on
-              </span>
-              <span className="font-body-md text-sm">{personal.location}</span>
-            </div>
-          </div>
+            <span className="material-symbols-outlined text-primary text-[22px] group-hover:scale-110 transition-transform">
+              rocket_launch
+            </span>
+            <span className="font-button-text text-sm sm:text-base font-bold uppercase tracking-wide">
+              Hire me to unlock my potential
+            </span>
+            <span className="material-symbols-outlined text-on-surface text-[18px] group-hover:translate-x-1 transition-transform">
+              arrow_forward
+            </span>
+          </a>
 
           <div className="flex gap-4">
             {socials.map((social) => {
