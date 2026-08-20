@@ -10,8 +10,12 @@ import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import useScrollReveal from "./hooks/useScrollReveal";
 
 export default function App() {
+  // Initialize scroll entrance reveal system
+  useScrollReveal();
+
   return (
     <>
       <Navbar />

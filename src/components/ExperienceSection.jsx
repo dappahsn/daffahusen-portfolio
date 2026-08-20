@@ -32,15 +32,17 @@ export default function ExperienceSection() {
     <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
       {/* Experience */}
       <div className="mt-12">
-        <h3 className="font-button-text text-button-text text-on-surface bg-surface-container-high border-4 border-on-surface px-4 py-2 inline-block w-fit uppercase mb-6 brick-shadow">
+        <h3 className="font-button-text text-button-text text-on-surface bg-surface-container-high border-4 border-on-surface px-4 py-2 inline-block w-fit uppercase mb-6 brick-shadow reveal-left">
           EXPERIENCE
         </h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {displayedExperiences.map((exp) => (
+          {displayedExperiences.map((exp, idx) => (
             <div
               key={exp.id}
-              className="brick-card p-8 relative bg-white flex flex-col gap-5 justify-between group"
+              className={`brick-card p-8 relative bg-white flex flex-col gap-5 justify-between group reveal-pop delay-${
+                ((idx % 4) + 1) * 100
+              }`}
             >
               <div>
                 <div className="flex gap-6 items-start">
@@ -119,7 +121,7 @@ export default function ExperienceSection() {
 
         {/* View All Experiences Button */}
         {remainingExpCount > 0 && (
-          <div className="flex justify-center mb-12">
+          <div className="flex justify-center mb-12 reveal-pop">
             <button
               onClick={() => setShowAllExp(!showAllExp)}
               className="px-6 py-3.5 bg-white text-on-surface border-4 border-on-surface font-button-text text-sm font-bold uppercase brick-btn relative cursor-pointer"
@@ -138,14 +140,16 @@ export default function ExperienceSection() {
 
         {/* Organizations */}
         <div className="mt-12">
-          <h3 className="font-button-text text-button-text text-on-surface bg-surface-container-high border-4 border-on-surface px-4 py-2 inline-block w-fit uppercase mb-6 brick-shadow">
+          <h3 className="font-button-text text-button-text text-on-surface bg-surface-container-high border-4 border-on-surface px-4 py-2 inline-block w-fit uppercase mb-6 brick-shadow reveal-left">
             Organizations &amp; Leadership
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {displayedOrganizations.map((org) => (
+            {displayedOrganizations.map((org, idx) => (
               <div
                 key={org.id}
-                className="brick-card p-6 bg-white flex flex-col gap-4 justify-between relative group"
+                className={`brick-card p-6 bg-white flex flex-col gap-4 justify-between relative group reveal-pop delay-${
+                  ((idx % 4) + 1) * 100
+                }`}
               >
                 <div>
                   <div className="flex gap-4 items-center">

@@ -167,7 +167,7 @@ export default function BrickboxSection() {
     >
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-4 border-on-surface pb-4">
-        <div>
+        <div className="reveal-left">
           <div className="font-label-caps text-label-caps text-primary mb-2 font-bold uppercase">
             TECHNICAL ARSENAL
           </div>
@@ -177,7 +177,7 @@ export default function BrickboxSection() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 reveal-right">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -199,10 +199,12 @@ export default function BrickboxSection() {
 
       {/* Skills Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mt-4">
-        {displayedSkills.map((skill) => (
+        {displayedSkills.map((skill, idx) => (
           <div
             key={skill.name}
-            className="bg-white border-2 sm:border-3 border-on-surface rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 flex items-center gap-2.5 sm:gap-3.5 brick-shadow hover:-translate-y-1 transition-transform group select-none min-w-0"
+            className={`bg-white border-2 sm:border-3 border-on-surface rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 flex items-center gap-2.5 sm:gap-3.5 brick-shadow hover:-translate-y-1 transition-transform group select-none min-w-0 reveal-pop delay-${
+              ((idx % 4) + 1) * 100
+            }`}
           >
             {/* Logo Icon Box */}
             <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl border-2 border-on-surface bg-[#f3f4f6] flex items-center justify-center p-2 flex-shrink-0 group-hover:bg-surface transition-colors">

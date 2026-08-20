@@ -32,7 +32,7 @@ export default function HeroSection() {
     <section className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 mb-32 pt-6">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         {/* Text Content */}
-        <div className="md:col-span-7 flex flex-col gap-6">
+        <div className="md:col-span-7 flex flex-col gap-6 reveal-left">
           {/* Status Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-brick-yellow border-4 border-on-surface brick-shadow w-fit">
             <span className="w-3 h-3 rounded-full bg-primary animate-pulse border-2 border-on-surface" />
@@ -88,7 +88,7 @@ export default function HeroSection() {
         </div>
 
         {/* Profile Image with Orbiting Lego Car & Anti-gravity Floating Motion */}
-        <div className="md:col-span-5 relative animate-float-hero">
+        <div className="md:col-span-5 relative animate-float-hero reveal-right delay-150">
           <div
             ref={photoBoxRef}
             className="relative w-full aspect-[3/4] md:aspect-square border-4 border-on-surface brick-shadow bg-brick-blue select-none group"

@@ -1,6 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { personal, education } from "../data";
 import DetailModal from "./DetailModal";
+
+function FastCounter({ target, suffix = "", duration = 1400 }) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef(null);
+  const startedRef = useRef(false);
+
+  const startCounting = (customDuration = duration) => {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const elapsed = timestamp - startTimestamp;
+      const progress = Math.min(elapsed / customDuration, 1);
+
+      // Fast-forward acceleration and smooth deceleration curve like a sped-up clock / odometer
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(ease * target);
+      setCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        setCount(target);
+      }
+    };
+    requestAnimationFrame(step);
+  };
+
+  useEffect(() => {
+    const el = elementRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !startedRef.current) {
+            startedRef.current = true;
+            startCounting();
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, [target, duration]);
+
+  return (
+    <span
+      ref={elementRef}
+      onMouseEnter={() => startCounting(700)}
+      className="tabular-nums font-extrabold select-none inline-block transition-transform group-hover:scale-110"
+      title="Hover to spin again!"
+    >
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
+const STATS_DATA = [
+  { value: 6, suffix: "+", label: "Projects Completed", delay: "delay-100", duration: 1200 },
+  { value: 3, suffix: "+", label: "Years of Experience", delay: "delay-200", duration: 1000 },
+  { value: 15, suffix: "+", label: "Tech Mastered", delay: "delay-300", duration: 1400 },
+  { value: 100, suffix: "%", label: "Passion for Code", delay: "delay-400", duration: 1700 },
+];
 
 export default function AboutSection() {
   const [selectedEdu, setSelectedEdu] = useState(null);
@@ -10,13 +78,13 @@ export default function AboutSection() {
       <div className="flex flex-col gap-12">
         {/* About */}
         <div className="flex flex-col gap-6">
-          <h2 className="font-headline-md text-headline-md text-on-surface bg-brick-yellow border-4 border-on-surface px-4 py-2 inline-block w-fit brick-shadow uppercase">
+          <h2 className="font-headline-md text-headline-md text-on-surface bg-brick-yellow border-4 border-on-surface px-4 py-2 inline-block w-fit brick-shadow uppercase reveal-pop">
             ABOUT ME
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Bio Card */}
-            <div className="brick-card p-8 bg-white h-full flex flex-col justify-center relative">
+            <div className="brick-card p-8 bg-white h-full flex flex-col justify-center relative reveal-left delay-100">
               <div className="absolute -top-3 left-4 flex gap-4 px-2 pointer-events-none">
                 <span className="w-4 h-4 rounded-full bg-white border-2 border-on-surface z-10" />
                 <span className="w-4 h-4 rounded-full bg-white border-2 border-on-surface z-10" />
@@ -37,16 +105,18 @@ export default function AboutSection() {
             </div>
 
             {/* Education & Stats */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 reveal-right delay-150">
               <h3 className="font-button-text text-button-text text-on-surface bg-surface-container-high border-4 border-on-surface px-4 py-2 inline-block w-fit uppercase">
                 EDUCATION
               </h3>
 
               <div className="flex flex-col gap-4">
-                {education.map((edu) => (
+                {education.map((edu, idx) => (
                   <div
                     key={edu.id}
-                    className="brick-card p-6 relative bg-white flex gap-4 items-start group"
+                    className={`brick-card p-6 relative bg-white flex gap-4 items-start group reveal-pop delay-${
+                      (idx + 1) * 100
+                    }`}
                   >
                     <div className="w-16 h-16 border-3 border-on-surface bg-white rounded-xl flex-shrink-0 overflow-hidden flex items-center justify-center p-2 brick-shadow">
                       {edu.logo ? (
@@ -92,43 +162,25 @@ export default function AboutSection() {
                 ))}
               </div>
 
-              {/* Stats Cards */}
+              {/* Stats Cards with Fast Counter Odometer Animation */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-auto">
-                <div className="brick-card p-3 sm:p-4 text-center bg-white text-on-surface hover:-translate-y-1 transition-transform group">
-                  <div className="font-headline-md text-[22px] sm:text-[26px] font-extrabold text-on-surface mb-0.5">
-                    6+
+                {STATS_DATA.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className={`brick-card p-3 sm:p-4 text-center bg-white text-on-surface hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#1a1c1c] transition-all group reveal-pop ${stat.delay} cursor-default`}
+                  >
+                    <div className="font-headline-md text-[22px] sm:text-[26px] font-extrabold text-on-surface mb-0.5">
+                      <FastCounter
+                        target={stat.value}
+                        suffix={stat.suffix}
+                        duration={stat.duration}
+                      />
+                    </div>
+                    <div className="font-label-caps text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase leading-tight">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="font-label-caps text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase leading-tight">
-                    Projects Completed
-                  </div>
-                </div>
-
-                <div className="brick-card p-3 sm:p-4 text-center bg-white text-on-surface hover:-translate-y-1 transition-transform group">
-                  <div className="font-headline-md text-[22px] sm:text-[26px] font-extrabold text-on-surface mb-0.5">
-                    3+
-                  </div>
-                  <div className="font-label-caps text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase leading-tight">
-                    Years of Experience
-                  </div>
-                </div>
-
-                <div className="brick-card p-3 sm:p-4 text-center bg-white text-on-surface hover:-translate-y-1 transition-transform group">
-                  <div className="font-headline-md text-[22px] sm:text-[26px] font-extrabold text-on-surface mb-0.5">
-                    15+
-                  </div>
-                  <div className="font-label-caps text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase leading-tight">
-                    Tech Mastered
-                  </div>
-                </div>
-
-                <div className="brick-card p-3 sm:p-4 text-center bg-white text-on-surface hover:-translate-y-1 transition-transform group">
-                  <div className="font-headline-md text-[22px] sm:text-[26px] font-extrabold text-on-surface mb-0.5">
-                    100%
-                  </div>
-                  <div className="font-label-caps text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase leading-tight">
-                    Passion for Code
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

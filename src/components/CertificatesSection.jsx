@@ -7,15 +7,17 @@ export default function CertificatesSection() {
 
   return (
     <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 mt-12">
-      <h3 className="font-button-text text-button-text text-on-surface bg-surface-container-high border-4 border-on-surface px-4 py-2 inline-block w-fit uppercase mb-6 brick-shadow">
+      <h3 className="font-button-text text-button-text text-on-surface bg-surface-container-high border-4 border-on-surface px-4 py-2 inline-block w-fit uppercase mb-6 brick-shadow reveal-left">
         LICENSES &amp; CERTIFICATIONS
       </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {certifications.map((cert) => (
+        {certifications.map((cert, idx) => (
           <div
             key={cert.id || cert.name}
-            className="brick-card p-6 bg-white relative flex flex-col justify-between group"
+            className={`brick-card p-6 bg-white relative flex flex-col justify-between group reveal-pop delay-${
+              ((idx % 3) + 1) * 100
+            }`}
           >
             <div className="absolute -top-3 left-4 flex gap-4 px-2 pointer-events-none">
               <span className="w-4 h-4 rounded-full bg-white border-2 border-on-surface z-10" />

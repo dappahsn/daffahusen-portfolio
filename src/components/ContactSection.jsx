@@ -10,22 +10,49 @@ export default function ContactSection() {
   });
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [errorMessage, setErrorMessage] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const errs = {};
+    if (!formData.name.trim()) {
+      errs.name = "Please fill in your name";
+    }
+    if (!formData.email.trim()) {
+      errs.email = "Please fill in your email address";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      errs.email = "Invalid email format (e.g. name@domain.com)";
+    }
+    if (!formData.message.trim()) {
+      errs.message = "Please enter your message";
+    } else if (formData.message.trim().length < 5) {
+      errs.message = "Message must be at least 5 characters";
+    }
+    return errs;
+  };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setStatus("error");
-      setErrorMessage("Please fill in all fields before sending!");
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
 
+    setErrors({});
     setStatus("sending");
     setErrorMessage("");
 
@@ -52,6 +79,7 @@ export default function ContactSection() {
 
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
+      setErrors({});
     } catch (err) {
       console.error("EmailJS error:", err);
       setStatus("error");
@@ -63,7 +91,7 @@ export default function ContactSection() {
 
   return (
     <section className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 mb-32 scroll-mt-28" id="contact">
-      <div className="mb-8">
+      <div className="mb-8 reveal-pop">
         <h2 className="font-headline-md text-headline-md text-on-surface bg-brick-yellow border-4 border-on-surface px-4 py-2 inline-block w-fit brick-shadow uppercase">
           CONTACT
         </h2>
@@ -71,7 +99,7 @@ export default function ContactSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left side */}
-        <div>
+        <div className="reveal-left delay-100">
           <h3 className="font-display-lg text-on-surface uppercase mb-4 leading-tight text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg">
             LET&apos;S BUILD
             <br />
@@ -132,7 +160,7 @@ export default function ContactSection() {
         </div>
 
         {/* Contact Form */}
-        <div className="brick-card p-8 bg-white relative">
+        <div className="brick-card p-8 bg-white relative reveal-right delay-200">
           <div className="absolute -top-3 left-8 flex gap-6 px-2 pointer-events-none z-20">
             <span className="w-6 h-6 rounded-full bg-white border-2 border-on-surface" />
             <span className="w-6 h-6 rounded-full bg-white border-2 border-on-surface" />
@@ -161,9 +189,9 @@ export default function ContactSection() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5 pt-2">
+            <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-5 pt-2">
               {status === "error" && (
-                <div className="p-3 bg-red-100 border-2 border-primary text-primary text-xs font-bold font-label-caps flex items-center gap-2">
+                <div className="p-3 bg-red-100 border-3 border-primary text-primary text-xs font-bold font-label-caps flex items-center gap-2 shadow-[3px_3px_0px_0px_#ba1a1a] animate-shake">
                   <span className="material-symbols-outlined text-[18px]">
                     error
                   </span>
@@ -172,58 +200,93 @@ export default function ContactSection() {
               )}
 
               <div className="flex flex-col gap-1.5">
-                <label
-                  className="font-label-caps font-bold text-on-surface uppercase text-xs"
-                  htmlFor="name"
-                >
-                  Your Name
-                </label>
+                <div className="flex justify-between items-center">
+                  <label
+                    className="font-label-caps font-bold text-on-surface uppercase text-xs"
+                    htmlFor="name"
+                  >
+                    Your Name
+                  </label>
+                  {errors.name && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-red-100 text-primary border-2 border-primary font-label-caps text-[10px] font-bold uppercase shadow-[2px_2px_0px_0px_#ba1a1a] animate-fadeIn select-none">
+                      <span className="material-symbols-outlined text-[13px]">error</span>
+                      {errors.name}
+                    </span>
+                  )}
+                </div>
                 <input
-                  className="border-3 border-on-surface p-3 font-body-md bg-surface-container focus:outline-none focus:bg-white transition-colors brick-shadow text-sm"
+                  className={`border-3 border-on-surface p-3.5 font-body-md bg-surface-container transition-all brick-shadow text-sm focus:outline-none focus:bg-white focus:border-brick-blue focus:shadow-[6px_6px_0px_0px_#1a1c1c] ${
+                    errors.name
+                      ? "border-primary bg-red-50/60 shadow-[3px_3px_0px_0px_#ba1a1a] animate-shake"
+                      : ""
+                  }`}
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="e.g. John Doe"
                   type="text"
-                  required
+                  autoComplete="name"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label
-                  className="font-label-caps font-bold text-on-surface uppercase text-xs"
-                  htmlFor="email"
-                >
-                  Your Email
-                </label>
+                <div className="flex justify-between items-center">
+                  <label
+                    className="font-label-caps font-bold text-on-surface uppercase text-xs"
+                    htmlFor="email"
+                  >
+                    Your Email
+                  </label>
+                  {errors.email && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-red-100 text-primary border-2 border-primary font-label-caps text-[10px] font-bold uppercase shadow-[2px_2px_0px_0px_#ba1a1a] animate-fadeIn select-none">
+                      <span className="material-symbols-outlined text-[13px]">error</span>
+                      {errors.email}
+                    </span>
+                  )}
+                </div>
                 <input
-                  className="border-3 border-on-surface p-3 font-body-md bg-surface-container focus:outline-none focus:bg-white transition-colors brick-shadow text-sm"
+                  className={`border-3 border-on-surface p-3.5 font-body-md bg-surface-container transition-all brick-shadow text-sm focus:outline-none focus:bg-white focus:border-brick-blue focus:shadow-[6px_6px_0px_0px_#1a1c1c] ${
+                    errors.email
+                      ? "border-primary bg-red-50/60 shadow-[3px_3px_0px_0px_#ba1a1a] animate-shake"
+                      : ""
+                  }`}
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="e.g. john@example.com"
-                  type="email"
-                  required
+                  type="text"
+                  autoComplete="email"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label
-                  className="font-label-caps font-bold text-on-surface uppercase text-xs"
-                  htmlFor="message"
-                >
-                  Your Message
-                </label>
+                <div className="flex justify-between items-center">
+                  <label
+                    className="font-label-caps font-bold text-on-surface uppercase text-xs"
+                    htmlFor="message"
+                  >
+                    Your Message
+                  </label>
+                  {errors.message && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-red-100 text-primary border-2 border-primary font-label-caps text-[10px] font-bold uppercase shadow-[2px_2px_0px_0px_#ba1a1a] animate-fadeIn select-none">
+                      <span className="material-symbols-outlined text-[13px]">error</span>
+                      {errors.message}
+                    </span>
+                  )}
+                </div>
                 <textarea
-                  className="border-3 border-on-surface p-3 font-body-md bg-surface-container focus:outline-none focus:bg-white transition-colors brick-shadow min-h-[120px] text-sm"
+                  className={`border-3 border-on-surface p-3.5 font-body-md bg-surface-container transition-all brick-shadow min-h-[120px] text-sm focus:outline-none focus:bg-white focus:border-brick-blue focus:shadow-[6px_6px_0px_0px_#1a1c1c] ${
+                    errors.message
+                      ? "border-primary bg-red-50/60 shadow-[3px_3px_0px_0px_#ba1a1a] animate-shake"
+                      : ""
+                  }`}
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="What would you like to build or discuss?"
-                  required
                 />
               </div>
 
