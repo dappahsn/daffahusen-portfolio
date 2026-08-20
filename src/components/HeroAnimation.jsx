@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import Lanyard from "./Lanyard";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
+
+const Lanyard = lazy(() => import("./Lanyard"));
 
 const FRAME_COUNT = 214;
 
@@ -16,6 +17,7 @@ export default function HeroAnimation() {
   const targetFrameRef = useRef(1);
   const lastDrawnFrameRef = useRef(-1);
   const animFrameIdRef = useRef(null);
+  const isLoopRunningRef = useRef(false);
 
   const [showLanyard, setShowLanyard] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
@@ -88,14 +90,17 @@ export default function HeroAnimation() {
 
     const drawFrame = (frameNum) => {
       const clamped = Math.max(1, Math.min(FRAME_COUNT, frameNum));
+      if (lastDrawnFrameRef.current === clamped && images[clamped]?.complete) return;
+
       const img = images[clamped];
 
       if (img && img.complete && img.naturalWidth > 0) {
         context.drawImage(img, 0, 0, canvas.width, canvas.height);
         lastDrawnFrameRef.current = clamped;
       } else {
-        // Find nearest loaded frame
-        for (let offset = 1; offset < FRAME_COUNT; offset++) {
+        // Find nearest loaded frame within bounded range for speed
+        const maxSearch = 20;
+        for (let offset = 1; offset <= maxSearch; offset++) {
           const prev = clamped - offset;
           const next = clamped + offset;
           if (
@@ -104,6 +109,7 @@ export default function HeroAnimation() {
             images[prev]?.naturalWidth > 0
           ) {
             context.drawImage(images[prev], 0, 0, canvas.width, canvas.height);
+            lastDrawnFrameRef.current = prev;
             break;
           }
           if (
@@ -112,6 +118,7 @@ export default function HeroAnimation() {
             images[next]?.naturalWidth > 0
           ) {
             context.drawImage(images[next], 0, 0, canvas.width, canvas.height);
+            lastDrawnFrameRef.current = next;
             break;
           }
         }
@@ -151,7 +158,7 @@ export default function HeroAnimation() {
       loadFrame(i, false);
     }
 
-    // 3. Background Fill Phase: Fill all remaining frames
+    // 3. Background Fill Phase: Fill all remaining frames using idle callback
     let bgIndex = 1;
     const loadNextBatch = () => {
       const end = Math.min(FRAME_COUNT, bgIndex + 10);
@@ -169,32 +176,41 @@ export default function HeroAnimation() {
     };
     loadNextBatch();
 
-    let isRunning = true;
+    // On-demand render loop (sleeps when idle to save CPU/GPU)
     const updateLoop = () => {
-      if (!isRunning) return;
-
       const diff = targetFrameRef.current - currentFrameRef.current;
+
       if (Math.abs(diff) > 0.01) {
         currentFrameRef.current += diff * 0.45;
         const target = Math.round(currentFrameRef.current);
         drawFrame(target);
 
-        // Preload immediate adjacent frames of the current target on the fly
-        for (let offset = -4; offset <= 4; offset++) {
+        // Preload immediate adjacent frames on the fly
+        for (let offset = -3; offset <= 3; offset++) {
           const adj = target + offset;
           if (adj >= 1 && adj <= FRAME_COUNT) {
             loadFrame(adj, true);
           }
         }
-      } else if (currentFrameRef.current !== targetFrameRef.current) {
-        currentFrameRef.current = targetFrameRef.current;
-        drawFrame(Math.round(currentFrameRef.current));
-      }
 
-      animFrameIdRef.current = requestAnimationFrame(updateLoop);
+        animFrameIdRef.current = requestAnimationFrame(updateLoop);
+      } else {
+        if (currentFrameRef.current !== targetFrameRef.current) {
+          currentFrameRef.current = targetFrameRef.current;
+          drawFrame(Math.round(currentFrameRef.current));
+        }
+        isLoopRunningRef.current = false;
+      }
     };
 
-    animFrameIdRef.current = requestAnimationFrame(updateLoop);
+    const requestUpdate = () => {
+      if (!isLoopRunningRef.current) {
+        isLoopRunningRef.current = true;
+        animFrameIdRef.current = requestAnimationFrame(updateLoop);
+      }
+    };
+
+    requestUpdate();
 
     const handleScroll = () => {
       if (!scrollContainer) return;
@@ -206,8 +222,7 @@ export default function HeroAnimation() {
         scrollFraction = Math.max(0, Math.min(1, -rect.top / totalScrollable));
       }
 
-      // Map scroll 0.00 -> 0.88 smoothly to frames 1 -> 236
-      // So by 88% scroll, frame 236 (the open hole) and Lanyard are ALREADY reached!
+      // Map scroll 0.00 -> 0.88 smoothly to frames 1 -> 214
       let frameIndex = 1;
       if (scrollFraction <= 0.88) {
         frameIndex =
@@ -216,7 +231,10 @@ export default function HeroAnimation() {
         frameIndex = FRAME_COUNT;
       }
 
-      targetFrameRef.current = frameIndex;
+      if (targetFrameRef.current !== frameIndex) {
+        targetFrameRef.current = frameIndex;
+        requestUpdate();
+      }
 
       // Show lanyard earlier (from frame 140 / scroll >= 0.55) with falling-down animation from under navbar
       if (frameIndex >= 140 || scrollFraction >= 0.55) {
@@ -224,12 +242,11 @@ export default function HeroAnimation() {
       } else {
         setShowLanyard(false);
         if (scrollFraction < 0.35) {
-          // Allow re-triggering 1-second pause if user scrolls back to the top
           hasTriggeredLockRef.current = false;
         }
       }
 
-      // When reaching the last frame (frame 214), pause scroll for 1 second so lanyard can be viewed/interacted
+      // When reaching the last frame, pause scroll for 1 second so lanyard can be viewed/interacted
       if (frameIndex === FRAME_COUNT && !hasTriggeredLockRef.current) {
         hasTriggeredLockRef.current = true;
         currentFrameRef.current = FRAME_COUNT;
@@ -252,7 +269,7 @@ export default function HeroAnimation() {
     handleScroll();
 
     return () => {
-      isRunning = false;
+      isLoopRunningRef.current = false;
       if (animFrameIdRef.current) {
         cancelAnimationFrame(animFrameIdRef.current);
       }
@@ -274,19 +291,21 @@ export default function HeroAnimation() {
 
         {/* React Bits 3D Interactive Lanyard with falling-down entry animation from navbar */}
         <div
-          className={`absolute inset-0 z-50 flex flex-col items-center justify-center transition-all duration-700 ease-out ${
+          className={`absolute inset-0 z-50 flex flex-col items-center justify-center transition-all duration-350 ease-out ${
             showLanyard
               ? "opacity-100 translate-y-8 md:translate-y-12 scale-100 pointer-events-auto"
               : "opacity-0 -translate-y-36 scale-95 pointer-events-none"
           }`}
         >
           {showLanyard && (
-            <Lanyard
-              position={[0, 0, 20]}
-              gravity={[0, -40, 0]}
-              imageFit="cover"
-              lanyardWidth={1}
-            />
+            <Suspense fallback={null}>
+              <Lanyard
+                position={[0, 0, 20]}
+                gravity={[0, -60, 0]}
+                imageFit="cover"
+                lanyardWidth={1}
+              />
+            </Suspense>
           )}
         </div>
 

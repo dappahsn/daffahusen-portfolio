@@ -14,15 +14,17 @@ export default function Navbar() {
   const [showCvModal, setShowCvModal] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const updateActiveSection = () => {
       const sectionIds = ["home", "about", "projects", "contact"];
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
-      // Check if near bottom of page
       if (windowHeight + scrollY >= documentHeight - 100) {
         setActiveSection("#contact");
+        ticking = false;
         return;
       }
 
@@ -34,15 +36,24 @@ export default function Navbar() {
           const top = rect.top + scrollY;
           if (scrollY + 300 >= top) {
             setActiveSection(`#${id}`);
+            ticking = false;
             return;
           }
         }
       }
       setActiveSection("#home");
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActiveSection);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    updateActiveSection();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

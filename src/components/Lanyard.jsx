@@ -57,7 +57,7 @@ const BACK_UV_RECT = { x: 0.5, y: 0, w: 0.5, h: 0.757 };
 
 export default function Lanyard({
   position = [0, 0, 24],
-  gravity = [0, -40, 0],
+  gravity = [0, -60, 0],
   fov = 20,
   transparent = true,
   frontImage = defaultFrontImg,
@@ -136,9 +136,22 @@ export default function Lanyard({
   );
 }
 
+const vec = new THREE.Vector3();
+const ang = new THREE.Vector3();
+const rot = new THREE.Vector3();
+const dir = new THREE.Vector3();
+
+const segmentProps = {
+  type: "dynamic",
+  canSleep: true,
+  colliders: false,
+  angularDamping: 2,
+  linearDamping: 2,
+};
+
 function Band({
-  maxSpeed = 50,
-  minSpeed = 0,
+  maxSpeed = 60,
+  minSpeed = 10,
   isMobile = false,
   frontImage = defaultFrontImg,
   backImage = defaultBackImg,
@@ -152,17 +165,6 @@ function Band({
     j2 = useRef(),
     j3 = useRef(),
     card = useRef();
-  const vec = new THREE.Vector3(),
-    ang = new THREE.Vector3(),
-    rot = new THREE.Vector3(),
-    dir = new THREE.Vector3();
-  const segmentProps = {
-    type: "dynamic",
-    canSleep: true,
-    colliders: false,
-    angularDamping: 4,
-    linearDamping: 4,
-  };
 
   const { nodes, materials } = useGLTF(cardGLB);
 
@@ -233,6 +235,14 @@ function Band({
       return materials?.base?.map || null;
     }
   }, [imageFit, frontTex, backTex, materials?.base?.map]);
+
+  useEffect(() => {
+    return () => {
+      if (cardMap && typeof cardMap.dispose === "function") {
+        cardMap.dispose();
+      }
+    };
+  }, [cardMap]);
 
   const [curve] = useState(
     () =>

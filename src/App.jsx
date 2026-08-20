@@ -9,6 +9,7 @@ import BrickboxSection from "./components/BrickboxSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
@@ -32,6 +33,9 @@ export default function App() {
       </main>
 
       <Footer />
+
+      {/* Floating Lego-Themed Scroll-to-Top Button */}
+      <ScrollToTop />
     </>
   );
 }

@@ -10,4 +10,25 @@ export default defineConfig({
       ignored: ["**/public/frames/**"],
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (
+            id.includes("node_modules/three") ||
+            id.includes("node_modules/meshline")
+          ) {
+            return "three";
+          }
+          if (
+            id.includes("node_modules/@react-three") ||
+            id.includes("node_modules/@dimforge")
+          ) {
+            return "react-three";
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
 });
