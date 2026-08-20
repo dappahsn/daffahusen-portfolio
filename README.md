@@ -142,8 +142,8 @@ npm run preview
 ## 👤 Author
 
 **Muhammad Daffa Husen**
-- 🌐 Website: [daffahusen.my.id](https://daffahusen.my.id)
-- 💼 LinkedIn: [Muhammad Daffa Husen](https://linkedin.com/in/daffahusen)
+- 🌐 Website: [daffahusen.my.id](https://daffahusen.vercel.app)
+- 💼 LinkedIn: [Muhammad Daffa Husen](https://www.linkedin.com/in/muhammaddaffahusen)
 - 🐙 GitHub: [@dappahsn](https://github.com/dappahsn)
 - 📧 Email: daffahusen10@gmail.com
 
