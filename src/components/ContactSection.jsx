@@ -69,8 +69,13 @@ export default function ContactSection() {
         templateId,
         {
           from_name: formData.name,
+          from_email: formData.email,
           reply_to: formData.email,
           user_email: formData.email,
+          time: new Date().toLocaleString("id-ID", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }),
           message: formData.message,
           to_name: personal.name,
         },
