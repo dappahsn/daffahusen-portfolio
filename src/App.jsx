@@ -11,8 +11,12 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import useScrollReveal from "./hooks/useScrollReveal";
+import useSmoothScroll from "./hooks/useSmoothScroll";
 
 export default function App() {
+  // Initialize Lenis smooth momentum scrolling and anchor navigation
+  useSmoothScroll();
+
   // Initialize scroll entrance reveal system
   useScrollReveal();
 

@@ -1,12 +1,30 @@
+import { useEffect } from "react";
 import { personal } from "../data";
 
 export default function CvModal({ isOpen, onClose }) {
+  // Handle ESC key and stop/start Lenis when open
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+      if (window.lenis) window.lenis.stop();
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+      if (window.lenis) window.lenis.start();
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const pdfUrl = personal.cv || "/cv/CV_Muhammad_Daffa_Husen.pdf";
 
   return (
-    <div className="fixed inset-0 z-[100] bg-on-background/70 backdrop-blur-sm flex items-center justify-center p-3 md:p-6 overflow-y-auto animate-fadeIn">
+    <div data-lenis-prevent className="fixed inset-0 z-[100] bg-on-background/70 backdrop-blur-sm flex items-center justify-center p-3 md:p-6 overflow-y-auto animate-fadeIn">
       {/* Click outside backdrop */}
       <div className="fixed inset-0" onClick={onClose} />
 

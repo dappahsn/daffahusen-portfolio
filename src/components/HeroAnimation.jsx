@@ -56,12 +56,15 @@ export default function HeroAnimation() {
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("keydown", handleKeyDown, { passive: false });
 
+    if (window.lenis) window.lenis.stop();
+
     const timeout = setTimeout(() => {
       setIsLocked(false);
     }, 1000);
 
     return () => {
       clearTimeout(timeout);
+      if (window.lenis) window.lenis.start();
       window.removeEventListener("wheel", preventScrollDown);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);

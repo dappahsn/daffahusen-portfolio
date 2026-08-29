@@ -4,6 +4,8 @@ import DetailModal from "./DetailModal";
 
 const getCategoryColor = (category) => {
   switch (category) {
+    case "UI/UX Design":
+      return "bg-[#00852B] text-white";
     case "Machine Learning":
       return "bg-primary text-white";
     case "Web":
@@ -35,7 +37,7 @@ export default function ProjectsSection() {
 
   return (
     <section className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 mb-32 scroll-mt-28" id="projects">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-8 border-b-4 border-on-surface pb-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8 border-b-4 border-on-surface pb-4">
         <div className="reveal-left">
           <div className="font-label-caps text-label-caps text-primary mb-2 font-bold uppercase">
             SELECTED WORKS
@@ -44,7 +46,7 @@ export default function ProjectsSection() {
             BUILT <span className="text-brick-blue">PROJECTS</span>
           </h2>
         </div>
-        <div className="flex flex-wrap gap-2 mt-4 md:mt-0 reveal-right">
+        <div className="flex flex-wrap gap-2 mt-2 md:mt-0 reveal-right">
           {projectCategories.map((filter) => (
             <button
               key={filter}

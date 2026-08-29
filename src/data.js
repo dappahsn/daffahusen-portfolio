@@ -503,6 +503,7 @@ export const certifications = [
 // ─── PROJECT CATEGORIES ───────────────────────────────────────────────────────
 export const projectCategories = [
   'All',
+  'UI/UX Design',
   'Web',
   'Machine Learning',
   'IoT',
@@ -519,42 +520,63 @@ export const projects = [
     year: '2026',
 
     description:
-      'A sentiment analysis research project on more than 40,000 Indonesian Roblox reviews using SVM, IndoBERT, and IndoBERTweet to classify positive, neutral, and negative sentiment.',
+      'Sentiment analysis research on 40,298 Indonesian Roblox reviews from the Google Play Store, benchmarking SVM (TF-IDF), IndoBERT, and IndoBERTweet. IndoBERT achieved top performance with 88.91% accuracy and an 81.78% macro F1-score.',
 
     overview:
-      'This research project performs sentiment analysis on Indonesian Roblox game reviews collected from the Google Play Store. Over 40,000 reviews were classified into positive, neutral, and negative sentiment categories using three different machine learning approaches.',
+      'This research focuses on developing an Indonesian Roblox review dataset and comparing the sentiment classification efficacy of Support Vector Machine (SVM), IndoBERT, and IndoBERTweet across negative, neutral, and positive classes. A total of 50,000 raw reviews were extracted from the Google Play Store using web scraping. Following thorough data cleaning and deduplication, a curated dataset of 40,298 reviews (19,488 Negative, 2,471 Neutral, and 18,339 Positive) was established with an 80:10:10 train-validation-test split.',
 
     problem:
-      'Indonesian-language game reviews are underrepresented in NLP research, and there is limited evaluation of how pre-trained transformer models perform on informal Indonesian text compared to classical ML approaches.',
+      'Indonesian gaming community reviews feature highly informal slang, colloquial expressions, and linguistic nuances. Additionally, severe class imbalance in neutral reviews (representing only 6.13% of the dataset) introduced high semantic ambiguity, creating major classification bottlenecks for standard NLP architectures.',
 
     solution:
-      'Three models were implemented and compared: SVM (classical ML baseline), IndoBERT (formal Indonesian BERT), and IndoBERTweet (informal/social media Indonesian BERT). Performance was evaluated using precision, recall, F1-score, and confusion matrix.',
+      'Engineered an end-to-end NLP research pipeline: automated Google Play Store web scraping, text preprocessing & automated sentiment pseudo-labeling with IndoBERT, 80:10:10 data partitioning, TF-IDF feature extraction for SVM, and fine-tuning contextual Transformer models (IndoBERT and IndoBERTweet) with hyperparameter optimization (learning rate 10⁻⁶, batch size 64, 10 epochs).',
 
     features: [
-      'Multi-class sentiment classification (positive, neutral, negative)',
-      'Comparison of SVM, IndoBERT, and IndoBERTweet models',
-      'Confusion matrix and performance metric evaluation',
-      'Indonesian-language NLP preprocessing pipeline'
+      'Final Dataset of 40,298 Reviews: 19,488 Negative (48.36%), 2,471 Neutral (6.13%), and 18,339 Positive (45.51%) curated from 50,000 scraped reviews',
+      'Top-Performing IndoBERT Model: Achieved 88.91% Accuracy, 79.09% Macro Precision, 86.79% Macro Recall, and an 81.78% Macro F1-Score',
+      'IndoBERTweet Evaluation: Reached 86.63% Accuracy, 76.02% Macro Precision, 83.44% Macro Recall, and a 78.42% Macro F1-Score',
+      'Baseline SVM Benchmark (RBF Kernel, C=1, gamma=scale, TF-IDF): Attained 84.07% Accuracy, 74.70% Macro Precision, 72.52% Macro Recall, and a 73.49% Macro F1-Score',
+      'Contextual Transformer Superiority: Empirically demonstrated that pre-trained Transformer architectures significantly outperform classical ML models in capturing contextual semantics from informal Indonesian text',
+      'Imbalance & Ambiguity Analysis: In-depth evaluation of classification challenges on neutral sentiment classes due to data sparsity and ambiguous user expressions'
     ],
 
     role: 'Machine Learning Researcher',
 
     image: '/projects/roblox-sentiment.webp',
-    images: [],
+    images: [
+      {
+        src: '/projects/roblox/roblox-sentiment-display.jpg',
+        caption: 'Sentiment Analysis Dashboard & IndoBERT NLP Architecture'
+      },
+      {
+        src: '/projects/roblox/model-performance-comparison.png',
+        caption: 'Model Performance Comparison Table (SVM vs. IndoBERT vs. IndoBERTweet)'
+      },
+      {
+        src: '/projects/roblox/sentiment-distribution.png',
+        caption: 'Sentiment Class Distribution (Negative: 19,488, Neutral: 2,471, Positive: 18,339)'
+      },
+      {
+        src: '/projects/roblox/research-flowchart.png',
+        caption: 'NLP Research Methodology & Model Convergence Flowchart'
+      }
+    ],
 
     technologies: [
       'Python',
-      'NLP',
-      'SVM',
       'IndoBERT',
       'IndoBERTweet',
+      'SVM',
       'Transformers',
+      'TF-IDF',
+      'NLP',
       'Scikit-learn',
+      'Web Scraping',
       'Google Colab'
     ],
 
     links: {
-      github: 'https://github.com/dappahsn',
+      github: 'https://github.com/dappahsn/Sentiment-Analysis-of-Roblox-Reviews',
       demo: ''
     },
 
@@ -569,45 +591,66 @@ export const projects = [
     year: '2025',
 
     description:
-      'A responsive web-based information platform developed for the Desa Berdaya program of PT PLN UID Aceh to showcase local UMKM information through an accessible digital interface.',
+      'A comprehensive community empowerment web portal built for PT PLN (Persero) UID Aceh, showcasing local Acehnese UMKM products, village initiatives, educational English courses, and sustainability waste management programs.',
 
     overview:
-      'A web platform built during an internship at PT PLN (Persero) UID Aceh as part of the Desa Berdaya program. The platform showcases information about local UMKM (small and medium enterprises) empowered by PLN initiatives across Aceh.',
+      'Desa Berdaya PLN is a multi-page community empowerment portal developed during an internship at PT PLN (Persero) Unit Induk Distribusi Aceh. The platform centralizes and visualizes CSR initiatives across Aceh villages, featuring interactive catalogs for local UMKM artisans, village distribution maps across Aceh, educational programs like GM English Course, and environmental sustainability projects like Bank Sampah USK.',
 
     problem:
-      'Local UMKM information was scattered and inaccessible to the public. A centralized, visually accessible platform was needed to showcase PLN\'s community empowerment activities.',
+      'Prior to this platform, information regarding PLN-supported village programs, empowered UMKM micro-enterprises, and community development initiatives across Aceh was fragmented and difficult for the public and stakeholders to discover.',
 
     solution:
-      'Developed a fully responsive multi-page website using vanilla HTML, CSS, and JavaScript with Bootstrap for layout, Chart.js for data visualization, and Google Maps integration for location display. Deployed via GitHub Pages.',
+      'Engineered a modern, responsive web application featuring a multi-page navigation architecture, dynamic category filtering for local crafts and traditional culinary products (Kupiah Meukeutop, Songket, Kue Bhoi, Ikan Keumamah), interactive village distribution mapping, image carousels for program documentation, interactive FAQ accordions, and an integrated contact system.',
 
     features: [
-      'Responsive multi-page layout',
-      'Interactive data charts with Chart.js',
-      'Google Maps integration for UMKM locations',
-      'UMKM profile and information pages',
-      'Accessible and mobile-friendly design'
+      'Comprehensive Landing Portal: Dynamic hero carousel, program highlight cards, interactive Aceh distribution map, FAQ accordion, and inquiry form',
+      'UMKM Product Showcase & Filter: Categorized gallery filtering across Food, Clothing, Headwear, Bags, Handicrafts, and Household Tools',
+      'Education & English Course Hub: Dedicated module showcasing the GM English Course initiative in Gampong Geuceu Meunara to improve youth global competence',
+      'Environmental Sustainability / Bank Sampah: Documentation of organic & inorganic waste processing machines (hydraulic presses, shredders, grinders) at USK',
+      'Responsive Multi-Device Layout: Built with mobile-first principles, fluid Bootstrap grid system, and high-contrast accessible typography',
+      'Interactive Media Carousels: Integrated multi-image sliders for event documentation and program reporting'
     ],
 
     role: 'Front-End Web Developer',
 
     image: '/projects/desa-berdaya.webp',
     images: [
-      '/About/Experience/PLN/2.jpg'
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-cover.jpg',
+        caption: 'Desa Berdaya PLN Hero Banner & Official Welcome Interface'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-home.png',
+        caption: 'Desa Berdaya PLN Home Page & Interactive Village Distribution'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-umkm.png',
+        caption: 'Local Acehnese UMKM Product Catalog & Dynamic Filter System'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-kursus.png',
+        caption: 'GM English Course - Youth Education Empowerment Page'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-bank-sampah.png',
+        caption: 'Bank Sampah & Environmental Waste Management System'
+      }
     ],
 
     technologies: [
-      'HTML',
-      'CSS',
+      'HTML5',
+      'CSS3',
       'JavaScript',
-      'Bootstrap',
+      'Bootstrap 5',
       'Chart.js',
-      'Google Maps',
+      'Google Maps API',
+      'Responsive Web Design',
       'GitHub Pages'
     ],
 
     links: {
-      github: 'https://github.com/dappahsn',
-      demo: ''
+      github: 'https://github.com/dappahsn/Desa-Berdaya-PLN-UID-ACEH',
+      demo: 'https://dappahsn.github.io/Desa-Berdaya-PLN-ACEH/index.html'
     },
 
     featured: true
@@ -615,93 +658,141 @@ export const projects = [
 
   {
     id: 3,
-    slug: 'iepoma',
-    title: 'IePoma',
-    category: 'IoT',
-    year: '2024',
+    slug: 'lifegen-health-companion',
+    title: 'LifeGen - Health & Fitness Companion',
+    category: 'UI/UX Design',
+    year: '2023',
 
     description:
-      'An Arduino-based smart monitoring prototype utilizing pH and water-level sensors with servo control to support automated environmental monitoring.',
+      'National-level UI/UX competition finalist project at INFEST 9.0. A health and wellness companion mobile app designed in Figma with intuitive user flows, calorie tracking, food logging, and daily activity monitoring.',
 
     overview:
-      'IePoma is an IoT prototype system designed for automated aquatic or irrigation environment monitoring. It uses pH and water-level sensors to detect environmental parameters and controls a servo motor for automated responses.',
+      'LifeGen is a modern health and fitness companion mobile application designed to empower users to build sustainable lifestyle habits. Developed as a national finalist entry for the UI/UX Design Competition at INFEST 9.0 (Informatics Festival), the project encompasses full-cycle product design—from empathy-driven user research and wireframing to high-fidelity interactive prototyping and design systems in Figma.',
 
     problem:
-      'Manual monitoring of water quality and levels in aquatic environments is time-consuming and prone to human error, especially for continuous monitoring scenarios.',
+      'Many individuals struggle to maintain consistent fitness routines due to overwhelming, complicated tracking apps with steep learning curves, cluttered user interfaces, and lack of motivational habit-forming feedback.',
 
     solution:
-      'Designed and built an Arduino-based embedded system integrating pH sensors, water-level sensors, and servo motor actuation for automated environmental monitoring and response.',
+      'Designed an intuitive, motivating mobile experience centered on four core pillars: calorie tracking (burned vs. consumed), step counting with daily milestones, frictionless meal logging, and progress insights. Designed in Figma with a full interactive prototype flow from onboarding to daily dashboard tracking.',
 
     features: [
-      'Real-time pH level monitoring',
-      'Water level detection and alerting',
-      'Automated servo motor control',
-      'Arduino-based embedded system'
+      'National Finalist Recognized: Selected as Finalist in the national UI/UX Design Competition at INFEST 9.0 (Informatics Festival 2023)',
+      'Comprehensive Figma Interactive Prototype: Fully interactive prototyping flow including onboarding questionnaire, authentication, dashboard, meal logging diary, and profile settings',
+      'Calorie & Nutrition Tracking: Intuitive calorie ring visualization comparing daily calories consumed against active energy burned',
+      'Step & Activity Monitoring: Daily step goal progress bars with distance, active minutes, and milestone badges',
+      'Food & Meal Intake Logging: Quick-add food journal with nutritional macro breakdown (carbs, proteins, fats)',
+      'Design System & Component Library: Structured Figma components, cohesive energetic orange brand identity, accessible typography, and mobile UX standards'
     ],
 
-    role: 'Embedded Systems Developer',
+    role: 'Lead UI/UX Designer & Product Researcher',
 
-    image: '/projects/iepoma.webp',
-    images: [],
+    image: '/projects/lifegen.webp',
+    images: [
+      {
+        src: '/projects/lifegen/lifegen-mockup.png',
+        caption: 'LifeGen Mobile App Dual Device Mockup (Splash & Dashboard UI)'
+      },
+      {
+        src: '/projects/lifegen/lifegen-dashboard.png',
+        caption: 'LifeGen Main Dashboard - Calorie Ring Tracker, Daily Foot Steps & Activity Metrics'
+      },
+      {
+        src: '/projects/lifegen/lifegen-splash.png',
+        caption: 'LifeGen Splash & Brand Launch Screen Interface'
+      },
+      {
+        src: '/projects/lifegen/lifegen-figma-flow.png',
+        caption: 'Figma Interactive Prototyping Flow Map & Information Architecture'
+      },
+      {
+        src: '/projects/lifegen/lifegen-competition-finalist.png',
+        caption: 'National UI/UX Finalist Presentation at INFEST 9.0 (Informatics Festival 2023)'
+      }
+    ],
 
     technologies: [
-      'Arduino',
-      'Embedded Systems',
-      'pH Sensor',
-      'Water Level Sensor',
-      'Servo Motor',
-      'IoT'
+      'Figma',
+      'UI/UX Design',
+      'Interactive Prototyping',
+      'User Research',
+      'Design Thinking',
+      'Design Systems',
+      'Wireframing',
+      'Mobile UX'
     ],
 
     links: {
-      github: 'https://github.com/dappahsn',
-      demo: ''
+      github: '',
+      demo: 'https://www.figma.com/proto/MIYprCXiJ8d9SDMZA5kMYT/Lifegen?page-id=0%3A1&node-id=48-3636&p=f&viewport=488%2C591%2C0.18&t=ywpG479uWKZQYhzF-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=48%3A3636&show-proto-sidebar=1'
     },
 
-    featured: false
+    featured: true
   },
 
   {
     id: 4,
-    slug: 'trafficsense',
-    title: 'TrafficSense',
-    category: 'IoT',
-    year: '2024',
+    slug: 'veggieneed',
+    title: 'VeggieNeed - Farm-to-Table Marketplace',
+    category: 'UI/UX Design',
+    year: '2023',
 
     description:
-      'An ESP32-based intelligent traffic prototype utilizing sound sensor input to detect environmental signals and support responsive traffic-system concepts.',
+      'A conceptual farm-to-table digital marketplace designed in Figma connecting local vegetable growers and farmers directly with consumers through an intuitive, accessible mobile UI/UX experience.',
 
     overview:
-      'TrafficSense is an ESP32-based embedded prototype that uses sound sensor input to simulate intelligent traffic monitoring. It explores the concept of responsive traffic management driven by environmental audio signals.',
+      'VeggieNeed is a user-centered mobile marketplace application designed to bridge the gap between local agricultural farmers and urban households. Developed under the mentorship of Rahmad Dawood at Universitas Syiah Kuala, the project translates comprehensive user research and persona modeling into intuitive wireframes and interactive Figma prototypes, facilitating seamless crop discovery, direct producer purchasing, and community-driven fair trade.',
 
     problem:
-      'Traditional traffic systems are static and do not respond dynamically to environmental conditions or acoustic signals from emergency vehicles and road events.',
+      'Smallholder vegetable farmers often struggle with unfair intermediary markups and limited market access, while conscious consumers find it difficult to source fresh, affordable, and ethically grown local organic produce.',
 
     solution:
-      'Built a prototype using ESP32 with sound sensors to detect audio signals and trigger corresponding traffic-light or alerting responses, demonstrating the feasibility of sound-driven traffic intelligence.',
+      'Designed an accessible, community-oriented mobile platform in Figma featuring categorized harvest search ("Cari Hasil Panen"), promotional seasonal bundles ("Plenti Plenti" & "VegDiet"), direct farmer messaging, streamlined cart checkout, and clear order tracking flows.',
 
     features: [
-      'Sound-based environmental signal detection',
-      'ESP32 microcontroller with Wi-Fi capability',
-      'Responsive traffic signal prototype',
-      'Real-time sensor data processing'
+      'Farm-to-Table Discovery: Categorized marketplace browsing with instant harvest search and agricultural category filters',
+      'Interactive Figma High-Fidelity Prototype: Seamless end-to-end user journeys from splash onboarding to product checkout and order management',
+      'Promotional & Seasonal Campaign Feeds: Engaging promotional cards and curated dietary bundles (e.g. "Plenti Plenti", "VegDiet")',
+      'Direct Buyer-Seller Communication: Integrated chat and inquiry channels fostering direct community relationships with local farmers',
+      'Accessible UI Design System: Organic green visual identity, high-contrast readable typography, and intuitive mobile ergonomics',
+      'User-Centered Design Methodology: Grounded in empathy research, user personas, and iterative wireframe usability testing'
     ],
 
-    role: 'Embedded Systems Developer',
+    role: 'Lead UI/UX Designer & Product Researcher',
 
-    image: '/projects/trafficsense.webp',
-    images: [],
+    image: '/projects/veggieneed.webp',
+    images: [
+      {
+        src: '/projects/veggieneed/veggieneed-mockup.png',
+        caption: 'VeggieNeed Mobile App Dual Device Mockup (Splash & Marketplace UI)'
+      },
+      {
+        src: '/projects/veggieneed/veggieneed-home.png',
+        caption: 'VeggieNeed Marketplace Home Screen - Harvest Search, Promotional Banners & Navigation'
+      },
+      {
+        src: '/projects/veggieneed/veggieneed-splash.png',
+        caption: 'VeggieNeed Onboarding & Brand Splash Screen ("Kenali petani Anda, kenali makanan Anda")'
+      },
+      {
+        src: '/projects/veggieneed/veggieneed-logo.png',
+        caption: 'VeggieNeed Brand Identity & Organic Leaf Shopping Cart Logo'
+      }
+    ],
 
     technologies: [
-      'ESP32',
-      'IoT',
-      'Sound Sensor',
-      'Embedded Systems'
+      'Figma',
+      'UI/UX Design',
+      'Interactive Prototyping',
+      'User Research',
+      'Design Systems',
+      'Wireframing',
+      'Persona Building',
+      'Mobile UX'
     ],
 
     links: {
-      github: 'https://github.com/dappahsn',
-      demo: ''
+      github: '',
+      demo: 'https://www.figma.com/proto/GJKRbnFwVvOZUCtw7SbOdc/Veggieneed?page-id=0%3A1&node-id=1685-3385&p=f&viewport=496%2C172%2C0.31&t=f0GegnLakMD2UK4A-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=104%3A252'
     },
 
     featured: false
@@ -709,45 +800,67 @@ export const projects = [
 
   {
     id: 5,
-    slug: 'bridgeguard',
-    title: 'BridgeGuard',
-    category: 'IoT',
+    slug: 'adaptive-sobel-edge-detection',
+    title: 'Adaptive Sobel Edge Detection',
+    category: 'Machine Learning',
     year: '2024',
 
     description:
-      'A structural monitoring prototype designed to detect bridge vibration using sensors and embedded-system technology for early infrastructure condition monitoring.',
+      'An interactive Computer Vision web application built with Python, OpenCV, and Streamlit, implementing adaptive thresholding on the classical Sobel operator for robust real-time image edge detection.',
 
     overview:
-      'BridgeGuard is an IoT-based structural health monitoring prototype that uses vibration sensors to detect anomalies in bridge structures. It aims to support early detection of potential infrastructure issues.',
+      'Developed under the guidance of Kahlil Muchtar, Ph.D. at Universitas Syiah Kuala, this Computer Vision project enhances traditional Sobel edge detection by dynamically adjusting gradient sensitivity based on local neighborhood contrast and pixel intensities. Built with an intuitive Streamlit web interface, users can upload custom imagery, dynamically tune threshold parameters, and inspect real-time edge segmentation maps.',
 
     problem:
-      'Bridge infrastructure monitoring currently relies on infrequent manual inspections, which may miss developing structural issues before they become critical.',
+      'Standard Sobel operators rely on fixed global thresholding and rigid convolution kernels, causing poor boundary detection on images with uneven illumination, low contrast, or noisy backgrounds.',
 
     solution:
-      'Developed an embedded sensor system that continuously monitors bridge vibration levels and provides data for anomaly detection, demonstrating a low-cost IoT approach to structural health monitoring.',
+      'Engineered an adaptive Sobel operator algorithm in Python with OpenCV and NumPy that computes directional gradient magnitudes (Gx and Gy) with local neighborhood threshold adaptation. Deployed on Streamlit Cloud with an interactive web UI allowing instant parameter manipulation and side-by-side visual analysis.',
 
     features: [
-      'Continuous vibration monitoring',
-      'Anomaly detection from sensor data',
-      'Early warning infrastructure system',
-      'IoT-based embedded hardware design'
+      'Adaptive Gradient Sensitivity: Dynamically adjusts threshold levels based on local image contrast to minimize noise while preserving critical boundary details',
+      'Interactive Streamlit Web Dashboard: Upload custom images and tweak filter parameters (kernel size, sensitivity, threshold) with instant visual feedback',
+      'Directional Gradient Computation: Calculates horizontal (Gx) and vertical (Gy) spatial gradient derivatives for complete 2D edge magnitude mapping',
+      'Real-Time Computer Vision Pipeline: High-speed matrix convolutions powered by OpenCV and NumPy for seamless image rendering',
+      'Academic Research Supervision: Guided by Kahlil Muchtar, Ph.D., bridging theoretical digital image processing with interactive web deployment'
     ],
 
-    role: 'Embedded Systems Developer',
+    role: 'Computer Vision Developer',
 
-    image: '/projects/bridgeguard.webp',
-    images: [],
+    image: '/projects/sobel-edge-detection.webp',
+    images: [
+      {
+        src: '/projects/computer-vision/sobel-streamlit-overview.jpg',
+        caption: 'Adaptive Sobel Edge Detection Streamlit Web Dashboard & Comparison Matrix'
+      },
+      {
+        src: '/projects/computer-vision/sobel-streamlit-analysis.png',
+        caption: 'Interactive Parameter Tuning (Manual Threshold vs. Otsu Adaptive Segmentation)'
+      },
+      {
+        src: '/projects/computer-vision/sobel.png',
+        caption: 'Directional Sobel Convolution Kernels & Gradient Operator Matrix'
+      },
+      {
+        src: '/projects/computer-vision/sobel-display.jpg',
+        caption: 'Computer Vision Real-Time Analysis & Dynamic Gradient Pipeline'
+      }
+    ],
 
     technologies: [
-      'IoT',
-      'Vibration Sensor',
-      'Embedded Systems',
-      'Structural Monitoring'
+      'Python',
+      'OpenCV',
+      'Streamlit',
+      'NumPy',
+      'Computer Vision',
+      'Image Processing',
+      'Sobel Filter',
+      'Streamlit Cloud'
     ],
 
     links: {
-      github: 'https://github.com/dappahsn',
-      demo: ''
+      github: 'https://github.com/dappahsn/Computer-Vision-Kelompok-1',
+      demo: 'https://computer-vision-kelompok-1.streamlit.app/'
     },
 
     featured: false
@@ -755,46 +868,287 @@ export const projects = [
 
   {
     id: 6,
-    slug: '3d-reconstruction-meshroom',
-    title: '3D Reconstruction with Meshroom',
-    category: 'Other',
+    slug: 'biocompost-buddy',
+    title: 'BioCompost Buddy - Smart IoT Composting System',
+    category: 'IoT',
     year: '2024',
 
     description:
-      'A photogrammetry and 3D reconstruction project using Meshroom to transform multiple photographs into detailed digital 3D models for visualization.',
+      'A nationally funded Top 180 Innovillage project delivering an integrated smart IoT composting machine and web monitoring platform with automated shredding, mechanized aeration, and multi-sensor fermentation tracking for rural food security in Aceh Besar.',
 
     overview:
-      'This project explores photogrammetry techniques using Meshroom (AliceVision) to reconstruct 3D models from multi-angle photographs. The resulting models are exported in GLB format for digital visualization and inspection.',
+      'BioCompost Buddy was selected as a Top 180 Nationally Funded Social Project in the Innovillage 2025/2026 competition (Telkom University / BUMN). Implemented directly in Gampong Cadek, Baitussalam, Aceh Besar, the system combines dual-chamber mechanical hardware (organic waste shredder and automated mixing paddles) with an ESP32 IoT telemetry node (DHT22, soil moisture, and MQ-6 gas sensors). The solution empowers 50 household farmers and village enterprise (BUMDes) caretakers to monitor real-time fermentation metrics through an interactive web portal, producing consistent, odor-free organic fertilizer while advancing community-based circular economy.',
 
     problem:
-      'Creating accurate 3D digital models of physical objects traditionally requires expensive specialized equipment and software, creating a barrier for academic and low-budget projects.',
+      'Household farmers in Gampong Cadek previously processed agricultural and organic waste using slow, manual methods resulting in inconsistent fertilizer quality, unmonitored anaerobic gas spikes, and unpredictable decomposition periods, with zero sensor or digital monitoring capabilities in the village.',
 
     solution:
-      'Used open-source Meshroom software and standard digital photography to capture and reconstruct detailed 3D models through structure-from-motion and multi-view stereo algorithms.',
+      'Engineered an integrated dual-chamber composting prototype equipped with a high-torque mechanical waste shredder, motorized mixing paddles, and an ESP32 IoT telemetry node wired to DHT22, capacitive soil moisture, and MQ-6 gas sensors. Deployed an interactive web portal featuring real-time readiness gauges (25–30°C, 40–60% moisture, <1000 ppm gas) and wireless manual override controls.',
 
     features: [
-      'Photogrammetric 3D model reconstruction',
-      'Multi-angle photography pipeline',
-      'GLB/3D model export',
-      'Open-source toolchain with Meshroom'
+      'Top 180 Innovillage National Finalist & Funded Project: Recognized and funded under the Innovillage 2025/2026 national social innovation competition by Telkom University & BUMN',
+      'Dual-Chamber Automated Mechanical System: High-torque organic waste shredder blade to minimize particle sizes paired with automated aeration mixing paddles',
+      'Multi-Sensor IoT Telemetry Node: ESP32 microcontroller reading DHT22 (ambient temp/humidity), soil moisture probes, and MQ-6 (methane/ammonia) gas sensors',
+      'Real-Time Fermentation Analytics: Automated algorithm detecting optimal compost maturity thresholds (25–30°C, 40–60% moisture, <1000 ppm gas)',
+      'Interactive Web Dashboard & 3D Visualizer: Responsive web platform with live sensor telemetry gauges, wireless motor activation, and 3D architectural models',
+      'Social Impact & Field Implementation: Directly deployed with village socialization, handover, and BUMDes training for 50 local farmers in Gampong Cadek, Aceh Besar'
     ],
 
-    role: 'Researcher & 3D Modeler',
+    role: 'Lead IoT Engineer & Full-Stack Developer',
 
-    image: '/projects/meshroom.webp',
-    images: [],
+    image: '/projects/biocompost-buddy.webp',
+    images: [
+      {
+        src: '/projects/biocompost-buddy/biocompost-banner.jpg',
+        caption: 'Official Innovillage 2025/2026 Project Banner (Sosialisasi Teknologi Pengolahan Kompos di Gampong Cadek)'
+      },
+      {
+        src: '/projects/biocompost-buddy/biocompost-handover.jpg',
+        caption: 'Innovillage Top 180 Project - Handover & Village Socialization with Local Farmers'
+      },
+      {
+        src: '/projects/biocompost-buddy/biocompost-assembly.jpg',
+        caption: 'Hardware Assembly, IoT Sensor Calibration & Field Testing Session'
+      },
+      {
+        src: '/projects/biocompost-buddy/biocompost-mockup.png',
+        caption: 'BioCompost Buddy Web Platform Laptop Showcase (Hero & 3D Design Stage)'
+      },
+      {
+        src: '/projects/biocompost-buddy/biocompost-3d-model.png',
+        caption: 'Interactive 3D Dual-Chamber Structure (Organic Waste Shredder & Sensor Mixing Tank)'
+      },
+      {
+        src: '/projects/biocompost-buddy/biocompost-features.png',
+        caption: 'Core System Capabilities (Real-Time Monitoring, Automatic Mixing, Shredder, IoT Dashboard)'
+      }
+    ],
 
     technologies: [
-      'Meshroom',
-      'AliceVision',
-      'Photogrammetry',
-      '3D Reconstruction',
-      'GLB'
+      'ESP32',
+      'IoT',
+      'DHT22 Sensor',
+      'MQ-6 Gas Sensor',
+      'Soil Moisture Sensor',
+      'Embedded C/C++',
+      'JavaScript',
+      'HTML5/CSS3',
+      'Bootstrap 5',
+      'Smart Agriculture'
     ],
 
     links: {
-      github: 'https://github.com/dappahsn',
+      github: 'https://github.com/dappahsn/BioCompostBuddy',
+      demo: 'https://dappahsn.github.io/BioCompostBuddy/'
+    },
+
+    featured: false
+  },
+
+  {
+    id: 7,
+    slug: 'iepoma',
+    title: 'IePoma - Smart Wastewater Recycling for Irrigation',
+    category: 'IoT',
+    year: '2024',
+
+    description:
+      'An IoT-enabled smart recycling and automated plant irrigation system that purifies rice washing wastewater for sustainable household and commercial agriculture.',
+
+    overview:
+      'Developed under the guidance of Rahmad Dawood at Universitas Syiah Kuala, IePoma is an automated smart irrigation and water conservation IoT prototype designed to recycle nutrient-rich rice washing wastewater. By integrating multi-stage mechanical filtration with Arduino microcontroller automation and real-time soil moisture sensors, the system automatically irrigates crops only when moisture levels drop below threshold, supporting SDG 6 (Clean Water and Sanitation) and SDG 12 (Responsible Consumption and Production).',
+
+    problem:
+      'Large amounts of rice washing wastewater from households and commercial restaurants ("Rumah Makan") are routinely discarded down drains, wasting valuable water and nutrient potential, while conventional irrigation systems lack sensor-driven automation and lead to excessive freshwater consumption.',
+
+    solution:
+      'Engineered an automated embedded IoT system featuring a multi-stage sediment filtration reservoir, soil moisture sensor probes, and automated solenoid/servo valve actuators controlled by an Arduino microcontroller. The system purifies greywater and delivers precise, automated drip irrigation based on real-time soil hydration data.',
+
+    features: [
+      'Sustainable Wastewater Recycling: Captures and filters rice washing greywater from culinary establishments to conserve potable freshwater',
+      'Real-Time Soil Moisture Sensing: Continously monitors soil hydration levels to trigger automatic, data-driven irrigation cycles',
+      'Multi-Stage Filtration Architecture: Integrated pre-filter and sediment filtration chamber to remove suspended solids prior to distribution',
+      'Arduino Microcontroller Control: Robust embedded firmware managing sensor telemetry, threshold evaluation, and automated valve actuation',
+      'SDG Alignment (SDG 6 & 12): Promotes responsible resource consumption, circular water economy, and urban micro-farming sustainability',
+      'Academic Research Supervision: Guided by mentor Rahmad Dawood at Universitas Syiah Kuala'
+    ],
+
+    role: 'Embedded Systems & IoT Developer',
+
+    image: '/projects/iepoma.webp',
+    images: [
+      {
+        src: '/projects/iepoma/iepoma-hardware-setup.jpg',
+        caption: 'IePoma Physical Hardware Prototype - Rice Wastewater Recycling & Automated Irrigation Setup'
+      },
+      {
+        src: '/projects/iepoma/iepoma-system-3d.png',
+        caption: '3D CAD Prototype Model of Filtration Tank & Microcontroller Actuator'
+      },
+      {
+        src: '/projects/iepoma/iepoma-top-view.png',
+        caption: 'Top-Down Layout of Wastewater Reservoir, Pipeline & Garden Bed'
+      },
+      {
+        src: '/projects/iepoma/iepoma-environment.png',
+        caption: 'Implementation Environment Concept at Commercial Restaurant (Rumah Makan)'
+      }
+    ],
+
+    technologies: [
+      'Arduino',
+      'Soil Moisture Sensor',
+      'Filtration System',
+      'Embedded C/C++',
+      'IoT',
+      'Automated Actuators',
+      'Water Recycling',
+      'Smart Agriculture'
+    ],
+
+    links: {
+      github: 'https://github.com/dappahsn/Ie-Poma',
       demo: ''
+    },
+
+    featured: false
+  },
+
+  {
+    id: 8,
+    slug: 'trafficsense',
+    title: 'TrafficSense - Smart Acoustic Traffic Monitoring',
+    category: 'IoT',
+    year: '2024',
+
+    description:
+      'An IoT-enabled smart traffic density monitoring system utilizing ESP32, acoustic sound sensors, and Google Cloud Firestore to detect roadway congestion and stream real-time telemetry to an interactive web dashboard.',
+
+    overview:
+      'TrafficSense ("Deteksi Cepat, Lalu Lintas Tepat") is an intelligent traffic monitoring and density classification IoT platform developed by Muhammad Daffa Husen. Powered by an ESP32 microcontroller and high-sensitivity acoustic sound sensors deployed at urban roadways (such as JL. Teuku Nyak Arief, Universitas Syiah Kuala), the system captures ambient sound levels, calculates moving acoustic averages, and synchronizes real-time telemetry to Google Cloud Firestore. The web dashboard provides dynamic congestion categorization ("Lancar", "Sedang", "Padat"), interactive Google Maps geospatial tracking, and historical traffic analytics.',
+
+    problem:
+      'Conventional road traffic monitoring depends heavily on expensive CCTV networks or manual patrols that require high network bandwidth, are vulnerable to poor lighting/weather conditions, and lack automated acoustic signal awareness for immediate density estimation.',
+
+    solution:
+      'Engineered a cost-effective acoustic IoT sensing node using ESP32 with Wi-Fi telemetry and NTP time synchronization. Sensor analog values are processed and pushed to Cloud Firestore, which drives a responsive real-time web dashboard featuring live congestion alerts, geospatial map overlays, and sensor history charts.',
+
+    features: [
+      'ESP32 Microcontroller & Wi-Fi Telemetry: Low-power edge computing node collecting real-time analog sound sensor samples with NTP time synchronization',
+      'Cloud Firestore Real-Time Database: Instantaneous data synchronization between edge IoT hardware nodes and web client dashboards',
+      'Acoustic Traffic Density Estimation: Algorithms mapping ambient decibel and sensor ADC values into intuitive congestion states (Lancar, Sedang, Padat)',
+      'Interactive Web Dashboard & Google Maps: Embedded geospatial visualization with road coordinate tracking (JL. Teuku Nyak Arief, Banda Aceh)',
+      'Historical Data Logging & Analytics: Dedicated history page displaying chronological traffic trends and peak hour acoustic sensor readings',
+      'Responsive Mobile-First UI: Clean, modern interface optimized for field monitoring and traffic authority dispatch'
+    ],
+
+    role: 'Full-Stack IoT Developer & Embedded Engineer',
+
+    image: '/projects/trafficsense.webp',
+    images: [
+      {
+        src: '/projects/trafficsense/trafficsense-mockup.png',
+        caption: 'TrafficSense Dual Device Mockup (Welcome Splash & Live Traffic Dashboard)'
+      },
+      {
+        src: '/projects/trafficsense/trafficsense-dashboard.jpg',
+        caption: 'Live Traffic Monitoring Dashboard with Google Maps (JL. Teuku Nyak Arief) & Real-Time Sensor Telemetry'
+      },
+      {
+        src: '/projects/trafficsense/trafficsense-splash.png',
+        caption: 'TrafficSense Mobile Splash Screen ("Deteksi Cepat, Lalu Lintas Tepat")'
+      },
+      {
+        src: '/projects/trafficsense/trafficsense-logo-3d.png',
+        caption: 'TrafficSense 3D GPS Location Pin & Smart Mobility Identity'
+      }
+    ],
+
+    technologies: [
+      'ESP32',
+      'IoT',
+      'Acoustic Sound Sensor',
+      'Firebase Firestore',
+      'Google Maps API',
+      'JavaScript',
+      'Bootstrap 5',
+      'Embedded C/C++',
+      'NTP Protocol'
+    ],
+
+    links: {
+      github: 'https://github.com/dappahsn/TrafficSense',
+      demo: 'https://dappahsn.github.io/TrafficSense/'
+    },
+
+    featured: false
+  },
+
+  {
+    id: 9,
+    slug: '3d-reconstruction-meshroom',
+    title: 'Interactive 3D Electronics with Meshroom & Three.js',
+    category: 'Web',
+    year: '2024',
+
+    description:
+      'Interactive web platform visualizing 3D reconstructed electronic components (Arduino Uno, Breadboard, LCD) using Meshroom photogrammetry and Three.js for real-time educational exploration.',
+
+    overview:
+      'An interactive 3D computer graphics and photogrammetry project developed under the supervision of Kahlil Muchtar, Ph.D. at Universitas Syiah Kuala. The system transforms multi-angle physical photographs of real-world electronic components (Arduino Uno board, prototyping breadboard, and 16x2 I2C LCD module) into textured 3D mesh models via Meshroom (AliceVision), rendering them in an interactive Three.js web viewport to support accessible hardware and electronics education.',
+
+    problem:
+      'Understanding physical electronics hardware in remote or resource-limited learning settings is challenging without physical lab equipment, while traditional manual 3D modeling is labor-intensive and often lacks realistic material texturing.',
+
+    solution:
+      'Built an end-to-end 3D digitization and web rendering pipeline: capturing multi-view high-resolution photography, computing camera poses & dense point clouds with AliceVision SfM (Structure from Motion), generating high-fidelity GLB 3D meshes with texture projection in Meshroom, and implementing an interactive Three.js web application with orbit controls, dynamic lighting, and component inspection.',
+
+    features: [
+      'Multi-Angle Photogrammetry Pipeline: Captured multi-perspective photographic datasets of real electronic hardware for automated 3D reconstruction',
+      'Dense Mesh & Texture Generation: Utilized AliceVision framework in Meshroom to compute depth maps, surface meshing, and high-resolution texture UV unwrapping',
+      'Reconstructed Electronic Hardware: 3D interactive models of Arduino Uno microcontroller, prototyping breadboard, and 16x2 Character LCD display',
+      'Real-Time Three.js Web Viewport: Smooth orbit camera rotation, zoom, pan, and real-time lighting rendering directly in modern web browsers',
+      'Educational Hardware Platform: Provides an interactive visual tool for students and educators to inspect component pinouts and spatial layouts',
+      'Academic Research Collaboration: Guided by supervisor Kahlil Muchtar, Ph.D., advancing computer graphics and digital twin learning'
+    ],
+
+    role: 'Computer Graphics & Web 3D Developer',
+
+    image: '/projects/meshroom.webp',
+    images: [
+      {
+        src: '/projects/meshroom/meshroom-hero.jpg',
+        caption: 'Interactive 3D Computer Graphics Web Portal (Hero & Overview)'
+      },
+      {
+        src: '/projects/meshroom/meshroom-3d-models.png',
+        caption: 'Interactive 3D Reconstructed Hardware Models (Breadboard & Arduino Uno)'
+      },
+      {
+        src: '/projects/meshroom/meshroom-team.png',
+        caption: 'Project Team & Contributor Directory (Muhammad Daffa Husen)'
+      },
+      {
+        src: '/projects/meshroom/meshroom-3d-electronics-display.jpg',
+        caption: 'Photogrammetry 3D Reconstruction & Multi-Angle Alignment Pipeline'
+      }
+    ],
+
+    technologies: [
+      'Three.js',
+      'Meshroom',
+      'AliceVision',
+      'Photogrammetry',
+      'WebGL',
+      'JavaScript',
+      'GLB / 3D Modeling',
+      'Bootstrap 5',
+      'Computer Graphics'
+    ],
+
+    links: {
+      github: 'https://github.com/dappahsn/Group-2---Computer-Graphics',
+      demo: 'https://dappahsn.github.io/Group-2---Computer-Graphics/'
     },
 
     featured: false

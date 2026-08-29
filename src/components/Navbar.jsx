@@ -57,6 +57,31 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setActiveSection(href);
+    setMenuOpen(false);
+
+    if (href === "#home" || href === "#") {
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { offset: 0, duration: 1.2 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      window.history.pushState(null, "", "#home");
+    } else {
+      const target = document.querySelector(href);
+      if (target) {
+        if (window.lenis) {
+          window.lenis.scrollTo(target, { offset: -90, duration: 1.2 });
+        } else {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+        window.history.pushState(null, "", href);
+      }
+    }
+  };
+
   return (
     <>
       <header className="fixed top-0 w-full z-50 bg-surface border-b-4 border-on-surface">
@@ -64,7 +89,7 @@ export default function Navbar() {
           <a
             className="relative inline-flex items-center text-headline-md font-headline-md font-black tracking-tighter text-primary group select-none cursor-pointer"
             href="#home"
-            onClick={() => setActiveSection("#home")}
+            onClick={(e) => handleNavClick(e, "#home")}
           >
             <span>DAFFA HUSEN</span>
             <span className="relative -top-2.5 ml-1 text-[11px] font-label-caps font-bold px-1.5 py-0.5 bg-brick-yellow text-on-surface border-2 border-on-surface shadow-[2px_2px_0px_0px_#1a1c1c] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-200 uppercase leading-none">
@@ -77,13 +102,13 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                className={`font-label-caps text-label-caps px-4 py-2 transition-all ${
+                className={`font-label-caps text-label-caps px-4 py-2 transition-all cursor-pointer ${
                   activeSection === link.href
                     ? "bg-brick-yellow border-4 border-on-surface brick-shadow text-on-surface font-bold"
                     : "text-on-surface-variant hover:text-primary border-4 border-transparent"
                 }`}
                 href={link.href}
-                onClick={() => setActiveSection(link.href)}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </a>
@@ -127,16 +152,13 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                className={`font-label-caps px-4 py-2 transition-all ${
+                className={`font-label-caps px-4 py-2 transition-all cursor-pointer ${
                   activeSection === link.href
                     ? "bg-brick-yellow border-4 border-on-surface brick-shadow text-on-surface font-bold w-fit"
                     : "text-on-surface-variant hover:text-primary"
                 }`}
                 href={link.href}
-                onClick={() => {
-                  setActiveSection(link.href);
-                  setMenuOpen(false);
-                }}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </a>

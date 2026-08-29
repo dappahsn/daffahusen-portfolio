@@ -15,10 +15,12 @@ export default function DetailModal({ isOpen, onClose, data, type }) {
     if (isOpen) {
       window.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
+      if (window.lenis) window.lenis.stop();
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
+      if (window.lenis) window.lenis.start();
     };
   }, [isOpen, onClose]);
 
@@ -58,7 +60,7 @@ export default function DetailModal({ isOpen, onClose, data, type }) {
   const technologies = data.technologies || [];
 
   return (
-    <div className="fixed inset-0 z-[110] bg-on-background/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto animate-fadeIn">
+    <div data-lenis-prevent className="fixed inset-0 z-[110] bg-on-background/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto animate-fadeIn">
       {/* Click outside backdrop */}
       <div className="fixed inset-0" onClick={onClose} />
 
@@ -104,7 +106,7 @@ export default function DetailModal({ isOpen, onClose, data, type }) {
         </div>
 
         {/* 2. Modal Body: Split 2-Column Grid */}
-        <div className="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-12 bg-white">
+        <div data-lenis-prevent className="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-12 bg-white">
           {/* Left Column: Media / Photo Gallery */}
           <div className="lg:col-span-6 bg-[#1f2123] border-b-4 lg:border-b-0 lg:border-r-4 border-on-surface p-4 sm:p-6 flex flex-col justify-between items-center min-h-[300px] lg:min-h-[480px]">
             {images.length > 0 && currentImageSrc ? (
@@ -329,7 +331,11 @@ export default function DetailModal({ isOpen, onClose, data, type }) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-4 py-2 bg-brick-yellow text-on-surface border-2 border-on-surface font-button-text text-xs uppercase brick-shadow hover:bg-yellow-300 transition-colors cursor-pointer"
                   >
-                    <span>LIVE DEMO</span>
+                    <span>
+                      {data.links.demo.includes("figma.com")
+                        ? "FIGMA PROTOTYPE"
+                        : "LIVE DEMO"}
+                    </span>
                     <span className="material-symbols-outlined text-[14px]">
                       launch
                     </span>
