@@ -85,7 +85,7 @@ export default function ProjectsSection() {
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                   src={project.image}
                   onError={(e) => {
-                    e.currentTarget.src = "/projects/project-1.webp";
+                    e.currentTarget.src = "/images/profile-hero.jpg";
                   }}
                 />
                 <div

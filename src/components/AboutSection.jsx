@@ -64,7 +64,7 @@ function FastCounter({ target, suffix = "", duration = 1400 }) {
 }
 
 const STATS_DATA = [
-  { value: 6, suffix: "+", label: "Projects Completed", delay: "delay-100", duration: 1200 },
+  { value: 12, suffix: "+", label: "Projects Completed", delay: "delay-100", duration: 1200 },
   { value: 3, suffix: "+", label: "Years of Experience", delay: "delay-200", duration: 1000 },
   { value: 15, suffix: "+", label: "Tech Mastered", delay: "delay-300", duration: 1400 },
   { value: 100, suffix: "%", label: "Passion for Code", delay: "delay-400", duration: 1700 },

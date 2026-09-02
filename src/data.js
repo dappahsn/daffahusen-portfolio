@@ -93,12 +93,24 @@ export const skills = [
     eyebrow: '01 / BUILD',
     items: [
       {
+        name: 'Next.js',
+        description: 'React production framework providing server-side rendering, App Router, full-stack API routes, and optimized performance.'
+      },
+      {
         name: 'React.js',
         description: 'JavaScript library for building modern and interactive user interfaces with a component-based architecture.'
       },
       {
+        name: 'TypeScript',
+        description: 'Typed superset of JavaScript providing static typing, robust interfaces, and scalable code maintainability.'
+      },
+      {
         name: 'JavaScript',
         description: 'Programming language used to build dynamic and interactive web experiences across front-end and back-end.'
+      },
+      {
+        name: 'Tailwind CSS',
+        description: 'Utility-first CSS framework for rapidly building responsive, modern, and pixel-perfect custom user interfaces.'
       },
       {
         name: 'HTML',
@@ -201,12 +213,32 @@ export const skills = [
     eyebrow: '04 / SYSTEMS',
     items: [
       {
+        name: 'Zustand',
+        description: 'Fast, lightweight, and scalable state management solution for modern React applications.'
+      },
+      {
         name: 'Git',
         description: 'Distributed version control system for tracking changes in source code during software development.'
       },
       {
         name: 'GitHub',
         description: 'Cloud-based platform for hosting Git repositories and enabling collaborative software development.'
+      },
+      {
+        name: 'Prisma ORM',
+        description: 'Next-generation Node.js and TypeScript ORM for type-safe database queries, schema migrations, and modeling.'
+      },
+      {
+        name: 'Express.js',
+        description: 'Fast, unopinionated, minimalist web framework for Node.js RESTful API architectures.'
+      },
+      {
+        name: 'Supabase',
+        description: 'Open-source Firebase alternative providing PostgreSQL database, instant APIs, authentication, and real-time subscriptions.'
+      },
+      {
+        name: 'PostgreSQL',
+        description: 'Powerful, open-source object-relational database system with advanced query optimization and Row Level Security.'
       },
       {
         name: 'Arduino',
@@ -542,7 +574,7 @@ export const projects = [
 
     role: 'Machine Learning Researcher',
 
-    image: '/projects/roblox-sentiment.webp',
+    image: '/projects/roblox/roblox-sentiment-display.jpg',
     images: [
       {
         src: '/projects/roblox/roblox-sentiment-display.jpg',
@@ -585,72 +617,77 @@ export const projects = [
 
   {
     id: 2,
-    slug: 'desa-berdaya-pln',
-    title: 'Desa Berdaya PLN',
+    slug: 'cash-in-point-of-sale',
+    title: 'Cash.in - Point of Sale (POS) & Business Management',
     category: 'Web',
-    year: '2025',
+    year: '2026',
 
     description:
-      'A comprehensive community empowerment web portal built for PT PLN (Persero) UID Aceh, showcasing local Acehnese UMKM products, village initiatives, educational English courses, and sustainability waste management programs.',
+      'A modern Point of Sale (POS) and business management web application built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4. Features rapid barcode/SKU checkout, 1:1 image auto-cropping, QRIS payments, thermal receipt printing, real-time stock control, multi-role RBAC, and Excel reports.',
 
     overview:
-      'Desa Berdaya PLN is a multi-page community empowerment portal developed during an internship at PT PLN (Persero) Unit Induk Distribusi Aceh. The platform centralizes and visualizes CSR initiatives across Aceh villages, featuring interactive catalogs for local UMKM artisans, village distribution maps across Aceh, educational programs like GM English Course, and environmental sustainability projects like Bank Sampah USK.',
+      'Cash.in is a high-performance digital Point of Sale (POS) and store management platform designed for micro, small, and medium enterprises (UMKM), F&B outlets, and retail stores. Built with Next.js 16 App Router and client-side reactive architectures, Cash.in delivers sub-second checkout speeds on desktop, tablet, and mobile browsers without requiring expensive server database overhead. It provides multi-role authentication (Owner & Cashier), dynamic SKU auto-generation, QRIS integration with store NMID, thermal receipt printing (58mm/80mm), operational expense tracking, and comprehensive profit & loss analytics.',
 
     problem:
-      'Prior to this platform, information regarding PLN-supported village programs, empowered UMKM micro-enterprises, and community development initiatives across Aceh was fragmented and difficult for the public and stakeholders to discover.',
+      'Traditional cash registers and enterprise POS systems are often slow, costly with high recurring subscription fees, difficult to configure on standard tablets/smartphones, and lack intuitive inventory alerts, staff role restrictions, and instant digital QRIS payment integration for growing UMKM businesses.',
 
     solution:
-      'Engineered a modern, responsive web application featuring a multi-page navigation architecture, dynamic category filtering for local crafts and traditional culinary products (Kupiah Meukeutop, Songket, Kue Bhoi, Ikan Keumamah), interactive village distribution mapping, image carousels for program documentation, interactive FAQ accordions, and an integrated contact system.',
+      'Engineered a lightweight, zero-latency POS web application leveraging Next.js 16, TypeScript, Zustand state management, and an optimized LocalStorage data access engine. Built an ergonomic POS terminal with instant category filtering, automatic VAT (11%) & discount calculation, browser canvas 1:1 image compression (~15–25 KB), visual stock status indicators (Safe, Low, Out of Stock), Role-Based Access Control (RBAC), and Recharts financial reporting with SheetJS Excel export.',
 
     features: [
-      'Comprehensive Landing Portal: Dynamic hero carousel, program highlight cards, interactive Aceh distribution map, FAQ accordion, and inquiry form',
-      'UMKM Product Showcase & Filter: Categorized gallery filtering across Food, Clothing, Headwear, Bags, Handicrafts, and Household Tools',
-      'Education & English Course Hub: Dedicated module showcasing the GM English Course initiative in Gampong Geuceu Meunara to improve youth global competence',
-      'Environmental Sustainability / Bank Sampah: Documentation of organic & inorganic waste processing machines (hydraulic presses, shredders, grinders) at USK',
-      'Responsive Multi-Device Layout: Built with mobile-first principles, fluid Bootstrap grid system, and high-contrast accessible typography',
-      'Interactive Media Carousels: Integrated multi-image sliders for event documentation and program reporting'
+      'Ergonomic Point of Sale (POS) Terminal: Instant product search by name or barcode/SKU, category filtering, 1:1 product catalog, and smart cart drawer with auto VAT (11%) & bill discounts',
+      'Flexible Payment & QRIS Integration: Supports cash payments with auto Rupiah change calculation and native store QRIS scanning with verified merchant name and NMID',
+      'Thermal Receipt Printing: Integrated receipt generation for 58mm and 80mm thermal printers with custom business logos, active cashier attribution, and personalized footer notes',
+      'Automated 1:1 Image Cropping & SKU Engine: In-browser canvas auto-cropping and compression (~15-25 KB) paired with smart category-based SKU generators (MIN-xxxx, MAK-xxxx, SNA-xxxx)',
+      'Real-Time Inventory & Stock Warning: Dynamic stock tracking with color-coded status badges (Stok Aman, Stok Menipis, Habis) and complete stock mutation adjustment logs',
+      'Multi-Role Access Control (RBAC): Dedicated permissions for Store Owner (full financial analytics, staff management, Excel export) and Cashiers (POS checkout & stock lookup with route guards)',
+      'Financial Analytics & Profit/Loss Reports: Interactive Recharts visualizations tracking 7-day revenue trends, payment method proportions, staff sales performance, and P&L metrics',
+      'Data Portability & Bilingual Support: One-click Excel (XLSX) and CSV reporting via SheetJS with full bilingual localization in Bahasa Indonesia (default) and English'
     ],
 
-    role: 'Front-End Web Developer',
+    role: 'Full-Stack Web Developer & UI/UX Designer',
 
-    image: '/projects/desa-berdaya.webp',
+    image: '/projects/cashin/cashin-mockup.jpg',
     images: [
       {
-        src: '/projects/desa-berdaya/desa-berdaya-cover.jpg',
-        caption: 'Desa Berdaya PLN Hero Banner & Official Welcome Interface'
+        src: '/projects/cashin/cashin-mockup.jpg',
+        caption: 'Cash.in Desktop Dashboard & Tablet POS Terminal Showcase'
       },
       {
-        src: '/projects/desa-berdaya/desa-berdaya-home.png',
-        caption: 'Desa Berdaya PLN Home Page & Interactive Village Distribution'
+        src: '/projects/cashin/cashin-pos.png',
+        caption: 'Point of Sale (POS) Interface - 1:1 Product Grid, Category Filters & Real-Time Cart Checkout'
       },
       {
-        src: '/projects/desa-berdaya/desa-berdaya-umkm.png',
-        caption: 'Local Acehnese UMKM Product Catalog & Dynamic Filter System'
+        src: '/projects/cashin/cashin-dashboard.png',
+        caption: 'Main Store Dashboard - 7-Day Revenue Trend, Top Selling Products & Low Stock Warnings'
       },
       {
-        src: '/projects/desa-berdaya/desa-berdaya-kursus.png',
-        caption: 'GM English Course - Youth Education Empowerment Page'
+        src: '/projects/cashin/cashin-analytics.png',
+        caption: 'Reports & Analytics - Gross/Net Revenue, Payment Method Donut Chart & Cashier Staff Performance'
       },
       {
-        src: '/projects/desa-berdaya/desa-berdaya-bank-sampah.png',
-        caption: 'Bank Sampah & Environmental Waste Management System'
+        src: '/projects/cashin/cashin-logo.png',
+        caption: 'Cash.in Official Logo & Visual Brand Identity'
       }
     ],
 
     technologies: [
-      'HTML5',
-      'CSS3',
-      'JavaScript',
-      'Bootstrap 5',
-      'Chart.js',
-      'Google Maps API',
-      'Responsive Web Design',
-      'GitHub Pages'
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS',
+      'Zustand',
+      'Recharts',
+      'SheetJS (XLSX)',
+      'Lucide React',
+      'RBAC',
+      'Canvas API',
+      'i18n'
     ],
 
     links: {
-      github: 'https://github.com/dappahsn/Desa-Berdaya-PLN-UID-ACEH',
-      demo: 'https://dappahsn.github.io/Desa-Berdaya-PLN-ACEH/index.html'
+      github: 'https://github.com/dappahsn/Cash.in',
+      demo: 'https://daffahusen-cash-in.vercel.app/'
     },
 
     featured: true
@@ -658,72 +695,73 @@ export const projects = [
 
   {
     id: 3,
-    slug: 'lifegen-health-companion',
-    title: 'LifeGen - Health & Fitness Companion',
-    category: 'UI/UX Design',
-    year: '2023',
+    slug: 'catat-in-personal-finance',
+    title: 'catat.in - Personal Finance & Cashflow Tracker',
+    category: 'Web',
+    year: '2026',
 
     description:
-      'National-level UI/UX competition finalist project at INFEST 9.0. A health and wellness companion mobile app designed in Figma with intuitive user flows, calorie tracking, food logging, and daily activity monitoring.',
+      'A modern, mobile-first personal finance tracker and Progressive Web App (PWA) built with React 19, TypeScript, Tailwind CSS v4, and Supabase. Features multi-account balance management, automated Rupiah formatting, Recharts cashflow analytics, Google OAuth, and encrypted cloud sync.',
 
     overview:
-      'LifeGen is a modern health and fitness companion mobile application designed to empower users to build sustainable lifestyle habits. Developed as a national finalist entry for the UI/UX Design Competition at INFEST 9.0 (Informatics Festival), the project encompasses full-cycle product design—from empathy-driven user research and wireframing to high-fidelity interactive prototyping and design systems in Figma.',
+      'catat.in is a responsive, high-performance personal finance tracking web application and installable Progressive Web App (PWA). Designed with a mobile-first philosophy, elegant Charcoal Dark (#0d0f12) and Emerald Green visual aesthetics, and zero layout shift, it empowers users to record daily income, expenses, and inter-account transfers, manage multi-source balances (Bank, E-Wallet, Cash), and visualize financial health through interactive Recharts analytics.',
 
     problem:
-      'Many individuals struggle to maintain consistent fitness routines due to overwhelming, complicated tracking apps with steep learning curves, cluttered user interfaces, and lack of motivational habit-forming feedback.',
+      'Individuals managing funds across multiple bank accounts, e-wallets, and cash often struggle with fragmented records, inaccurate balance oversight, and tedious manual accounting. Many existing finance tools are either overly complex with unnecessary enterprise features or lack smooth mobile responsiveness and real-time multi-account synchronization.',
 
     solution:
-      'Designed an intuitive, motivating mobile experience centered on four core pillars: calorie tracking (burned vs. consumed), step counting with daily milestones, frictionless meal logging, and progress insights. Designed in Figma with a full interactive prototype flow from onboarding to daily dashboard tracking.',
+      'Engineered a lightweight, privacy-focused PWA powered by Supabase PostgreSQL with strict Row Level Security (RLS) and Google OAuth authentication. Developed a frictionless transaction recording workflow with dynamic Rupiah currency formatting, mutation-based balance calculations, Recharts donut and cashflow visualizations, custom category management with emoji pickers, dual-theme support, multi-language (i18n), and JSON/CSV backup and export capabilities.',
 
     features: [
-      'National Finalist Recognized: Selected as Finalist in the national UI/UX Design Competition at INFEST 9.0 (Informatics Festival 2023)',
-      'Comprehensive Figma Interactive Prototype: Fully interactive prototyping flow including onboarding questionnaire, authentication, dashboard, meal logging diary, and profile settings',
-      'Calorie & Nutrition Tracking: Intuitive calorie ring visualization comparing daily calories consumed against active energy burned',
-      'Step & Activity Monitoring: Daily step goal progress bars with distance, active minutes, and milestone badges',
-      'Food & Meal Intake Logging: Quick-add food journal with nutritional macro breakdown (carbs, proteins, fats)',
-      'Design System & Component Library: Structured Figma components, cohesive energetic orange brand identity, accessible typography, and mobile UX standards'
+      'Smart Transaction Logging: Frictionless income (+), expense (-), and internal transfer (↔) tracking with real-time balance validation and auto-formatted IDR currency inputs',
+      'Multi-Account Balance Engine: Centralized management for Bank (BCA, Mandiri, BRI, SeaBank), Cash, and E-Wallets (GoPay, OVO, Dana, ShopeePay) with mutation-derived dynamic balances',
+      'Interactive Financial Analytics: Visualized cashflow breakdown with responsive Recharts donut charts, net income/expense summary cards, and category percentage distributions',
+      'Dynamic Category Customization: Custom income and expense category creation with an intuitive emoji picker for personalized expense tagging',
+      'Progressive Web App (PWA) & Mobile-First UX: Fully installable native-like PWA experience on Android, iOS, and Desktop with offline service workers and zero layout shift (scrollbar-gutter: stable)',
+      'Enterprise-Grade Security & Cloud Sync: Google OAuth 2.0 authentication powered by Supabase with Row Level Security (RLS) ensuring strict per-user database isolation',
+      'Data Portability & Export: Full JSON backup/restore with integrity verification and Excel-ready CSV export with UTF-8 BOM encoding',
+      'Internationalization & Daily Reminders: Dual-language support (Bahasa Indonesia & English) and customizable daily browser notification reminders'
     ],
 
-    role: 'Lead UI/UX Designer & Product Researcher',
+    role: 'Full-Stack Developer & UI/UX Designer',
 
-    image: '/projects/lifegen.webp',
+    image: '/projects/catatin/catatin-mockup.jpg',
     images: [
       {
-        src: '/projects/lifegen/lifegen-mockup.png',
-        caption: 'LifeGen Mobile App Dual Device Mockup (Splash & Dashboard UI)'
+        src: '/projects/catatin/catatin-mockup.jpg',
+        caption: 'catat.in Mobile App Dual Mockup (Transactions Feed & Financial Recap UI)'
       },
       {
-        src: '/projects/lifegen/lifegen-dashboard.png',
-        caption: 'LifeGen Main Dashboard - Calorie Ring Tracker, Daily Foot Steps & Activity Metrics'
+        src: '/projects/catatin/catatin-transactions-real.png',
+        caption: 'Live Transactions Screen - Real-Time Balance (Rp 1.600.000), Date Period Filters & Cashflow History'
       },
       {
-        src: '/projects/lifegen/lifegen-splash.png',
-        caption: 'LifeGen Splash & Brand Launch Screen Interface'
+        src: '/projects/catatin/catatin-recap-real.png',
+        caption: 'Financial Recap & Expense Distribution - Interactive Donut Chart, Net Difference & Category Breakdown'
       },
       {
-        src: '/projects/lifegen/lifegen-figma-flow.png',
-        caption: 'Figma Interactive Prototyping Flow Map & Information Architecture'
-      },
-      {
-        src: '/projects/lifegen/lifegen-competition-finalist.png',
-        caption: 'National UI/UX Finalist Presentation at INFEST 9.0 (Informatics Festival 2023)'
+        src: '/projects/catatin/catatin-logo-text.png',
+        caption: 'catat.in Official Brand Identity & Logotype'
       }
     ],
 
     technologies: [
-      'Figma',
-      'UI/UX Design',
-      'Interactive Prototyping',
-      'User Research',
-      'Design Thinking',
-      'Design Systems',
-      'Wireframing',
-      'Mobile UX'
+      'React 19',
+      'TypeScript',
+      'Vite',
+      'Tailwind CSS',
+      'Supabase',
+      'PostgreSQL',
+      'PWA',
+      'Recharts',
+      'Lucide React',
+      'Google OAuth',
+      'i18n'
     ],
 
     links: {
-      github: '',
-      demo: 'https://www.figma.com/proto/MIYprCXiJ8d9SDMZA5kMYT/Lifegen?page-id=0%3A1&node-id=48-3636&p=f&viewport=488%2C591%2C0.18&t=ywpG479uWKZQYhzF-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=48%3A3636&show-proto-sidebar=1'
+      github: 'https://github.com/dappahsn/catat.in',
+      demo: 'https://daffahusen-finance.vercel.app/'
     },
 
     featured: true
@@ -731,147 +769,97 @@ export const projects = [
 
   {
     id: 4,
-    slug: 'veggieneed',
-    title: 'VeggieNeed - Farm-to-Table Marketplace',
-    category: 'UI/UX Design',
-    year: '2023',
+    slug: 'court-in-sports-booking',
+    title: 'court.in - Sports Venue Booking & Management Platform',
+    category: 'Web',
+    year: '2026',
 
     description:
-      'A conceptual farm-to-table digital marketplace designed in Figma connecting local vegetable growers and farmers directly with consumers through an intuitive, accessible mobile UI/UX experience.',
+      'A full-stack sports court reservation and venue management platform built with React 19, Vite, Tailwind CSS v4, Zustand, Node.js Express 5, PostgreSQL, and Prisma ORM. Features conflict-free slot booking, 15-minute QRIS payment countdown, digital E-Tickets with QR codes, verified reviews, and a multi-role admin venue management dashboard.',
 
     overview:
-      'VeggieNeed is a user-centered mobile marketplace application designed to bridge the gap between local agricultural farmers and urban households. Developed under the mentorship of Rahmad Dawood at Universitas Syiah Kuala, the project translates comprehensive user research and persona modeling into intuitive wireframes and interactive Figma prototypes, facilitating seamless crop discovery, direct producer purchasing, and community-driven fair trade.',
+      'court.in is a comprehensive full-stack digital sports reservation and facility management platform designed to eliminate schedule clashes and manual booking friction for Futsal, Badminton, and Padel venues. Architected as a modular monorepo, the client features a high-performance React 19 and Tailwind CSS v4 frontend with Zustand state management, while the backend is powered by Node.js, Express 5, Prisma ORM, and PostgreSQL. The platform integrates dynamic QRIS payment workflows via Midtrans, automated 15-minute slot holding timers, verifiable digital E-Tickets with barcode/QR rendering, and a robust administrative portal for real-time venue scheduling, revenue analytics, and staff access control.',
 
     problem:
-      'Smallholder vegetable farmers often struggle with unfair intermediary markups and limited market access, while conscious consumers find it difficult to source fresh, affordable, and ethically grown local organic produce.',
+      'Sports facility reservations in Indonesia commonly rely on manual WhatsApp messaging and paper logs, resulting in frequent double-booking conflicts, lack of real-time slot visibility, cumbersome cash reconciliation, and fake or unverified customer reviews.',
 
     solution:
-      'Designed an accessible, community-oriented mobile platform in Figma featuring categorized harvest search ("Cari Hasil Panen"), promotional seasonal bundles ("Plenti Plenti" & "VegDiet"), direct farmer messaging, streamlined cart checkout, and clear order tracking flows.',
+      'Engineered an atomic double-booking prevention engine powered by PostgreSQL transactions and Prisma ORM, backed by a 15-minute QRIS checkout reservation timer that automatically releases unpaid slots. Built an interactive hourly time-slot matrix (07:00–23:00) with visual availability states, instant cash/QRIS checkout options, cryptographic E-Ticket generation, and review integrity gates that only permit verified players with completed bookings to submit ratings and feedback.',
 
     features: [
-      'Farm-to-Table Discovery: Categorized marketplace browsing with instant harvest search and agricultural category filters',
-      'Interactive Figma High-Fidelity Prototype: Seamless end-to-end user journeys from splash onboarding to product checkout and order management',
-      'Promotional & Seasonal Campaign Feeds: Engaging promotional cards and curated dietary bundles (e.g. "Plenti Plenti", "VegDiet")',
-      'Direct Buyer-Seller Communication: Integrated chat and inquiry channels fostering direct community relationships with local farmers',
-      'Accessible UI Design System: Organic green visual identity, high-contrast readable typography, and intuitive mobile ergonomics',
-      'User-Centered Design Methodology: Grounded in empathy research, user personas, and iterative wireframe usability testing'
+      'Real-Time Schedule Matrix: Interactive hourly booking grid (07:00–23:00) across Futsal, Badminton, and Padel courts with instant visual slot statuses (Available, Selected, Booked)',
+      'Atomic Double-Booking Prevention: Database-level transaction locks and backend concurrency middleware ensuring zero overlapping reservations',
+      '15-Minute QRIS Payment Hold: Automated reservation locking with a real-time countdown timer that auto-cancels expired orders and restores public slot availability',
+      'Digital E-Ticket with QR Code: Official ticket issuance featuring unique booking references (TKT-YYYY-MMDD-XXX), fee breakdown, and PDF download/print capability',
+      'Verified Review Integrity System: Anti-spam rating mechanism strictly restricted to users with verified COMPLETED booking sessions, complete with venue admin replies',
+      'Comprehensive Admin Management Portal: Executive analytics dashboard tracking venue revenue, occupancy rates, live slot scheduler, staff access permissions, and business operating hours',
+      'Multi-Role Access Control (RBAC): Dedicated roles for Customers, Venue Admins, and Operational/Cashier Staff with JWT-secured route guards',
+      'Modern Sporty UI & Motion Design: Built with Tailwind CSS v4 tokenized themes, smooth scroll-driven animations, responsive bento grids, and dynamic metric counters'
     ],
 
-    role: 'Lead UI/UX Designer & Product Researcher',
+    role: 'Full-Stack Developer & UI/UX Designer',
 
-    image: '/projects/veggieneed.webp',
+    image: '/projects/courtin/courtin-mockup.jpg',
     images: [
       {
-        src: '/projects/veggieneed/veggieneed-mockup.png',
-        caption: 'VeggieNeed Mobile App Dual Device Mockup (Splash & Marketplace UI)'
+        src: '/projects/courtin/courtin-mockup.jpg',
+        caption: 'court.in Multi-Device Showcase - Desktop Venue Management & Tablet Booking Interface'
       },
       {
-        src: '/projects/veggieneed/veggieneed-home.png',
-        caption: 'VeggieNeed Marketplace Home Screen - Harvest Search, Promotional Banners & Navigation'
+        src: '/projects/courtin/courtin-explore.png',
+        caption: 'Explore Courts Catalog - Sport Filters (Futsal, Badminton, Padel), Price Ranges & Real-Time Availability'
       },
       {
-        src: '/projects/veggieneed/veggieneed-splash.png',
-        caption: 'VeggieNeed Onboarding & Brand Splash Screen ("Kenali petani Anda, kenali makanan Anda")'
+        src: '/projects/courtin/courtin-detail.png',
+        caption: 'Court Detail & Slot Booking - High-Definition Facility Specs, Pricing & Interactive Hourly Schedule'
       },
       {
-        src: '/projects/veggieneed/veggieneed-logo.png',
-        caption: 'VeggieNeed Brand Identity & Organic Leaf Shopping Cart Logo'
+        src: '/projects/courtin/courtin-home.png',
+        caption: 'court.in Landing Page - Hero Presentation, Quick Search Bar & Sport Discovery'
+      },
+      {
+        src: '/projects/courtin/courtin-about.png',
+        caption: 'court.in About Ecosystem - Company Mission, Dynamic Customer Metrics & World-Class Service'
+      },
+      {
+        src: '/projects/courtin/courtin-contact.png',
+        caption: 'court.in Support & FAQ - Multi-Channel Help Center (WhatsApp, Email) & Instant Inquiries'
+      },
+      {
+        src: '/projects/courtin/courtin-logo-horizontal.png',
+        caption: 'court.in Official Brand Identity & Logotype'
       }
     ],
 
     technologies: [
-      'Figma',
-      'UI/UX Design',
-      'Interactive Prototyping',
-      'User Research',
-      'Design Systems',
-      'Wireframing',
-      'Persona Building',
-      'Mobile UX'
+      'React 19',
+      'Vite',
+      'Tailwind CSS v4',
+      'Zustand',
+      'Node.js',
+      'Express.js 5',
+      'PostgreSQL',
+      'Prisma ORM',
+      'Midtrans QRIS',
+      'JWT Auth',
+      'Lucide React',
+      'RESTful API'
     ],
 
     links: {
-      github: '',
-      demo: 'https://www.figma.com/proto/GJKRbnFwVvOZUCtw7SbOdc/Veggieneed?page-id=0%3A1&node-id=1685-3385&p=f&viewport=496%2C172%2C0.31&t=f0GegnLakMD2UK4A-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=104%3A252'
+      github: 'https://github.com/dappahsn/Court.in',
+      demo: 'https://court-in.vercel.app/'
     },
 
-    featured: false
+    featured: true
   },
 
   {
     id: 5,
-    slug: 'adaptive-sobel-edge-detection',
-    title: 'Adaptive Sobel Edge Detection',
-    category: 'Machine Learning',
-    year: '2024',
-
-    description:
-      'An interactive Computer Vision web application built with Python, OpenCV, and Streamlit, implementing adaptive thresholding on the classical Sobel operator for robust real-time image edge detection.',
-
-    overview:
-      'Developed under the guidance of Kahlil Muchtar, Ph.D. at Universitas Syiah Kuala, this Computer Vision project enhances traditional Sobel edge detection by dynamically adjusting gradient sensitivity based on local neighborhood contrast and pixel intensities. Built with an intuitive Streamlit web interface, users can upload custom imagery, dynamically tune threshold parameters, and inspect real-time edge segmentation maps.',
-
-    problem:
-      'Standard Sobel operators rely on fixed global thresholding and rigid convolution kernels, causing poor boundary detection on images with uneven illumination, low contrast, or noisy backgrounds.',
-
-    solution:
-      'Engineered an adaptive Sobel operator algorithm in Python with OpenCV and NumPy that computes directional gradient magnitudes (Gx and Gy) with local neighborhood threshold adaptation. Deployed on Streamlit Cloud with an interactive web UI allowing instant parameter manipulation and side-by-side visual analysis.',
-
-    features: [
-      'Adaptive Gradient Sensitivity: Dynamically adjusts threshold levels based on local image contrast to minimize noise while preserving critical boundary details',
-      'Interactive Streamlit Web Dashboard: Upload custom images and tweak filter parameters (kernel size, sensitivity, threshold) with instant visual feedback',
-      'Directional Gradient Computation: Calculates horizontal (Gx) and vertical (Gy) spatial gradient derivatives for complete 2D edge magnitude mapping',
-      'Real-Time Computer Vision Pipeline: High-speed matrix convolutions powered by OpenCV and NumPy for seamless image rendering',
-      'Academic Research Supervision: Guided by Kahlil Muchtar, Ph.D., bridging theoretical digital image processing with interactive web deployment'
-    ],
-
-    role: 'Computer Vision Developer',
-
-    image: '/projects/sobel-edge-detection.webp',
-    images: [
-      {
-        src: '/projects/computer-vision/sobel-streamlit-overview.jpg',
-        caption: 'Adaptive Sobel Edge Detection Streamlit Web Dashboard & Comparison Matrix'
-      },
-      {
-        src: '/projects/computer-vision/sobel-streamlit-analysis.png',
-        caption: 'Interactive Parameter Tuning (Manual Threshold vs. Otsu Adaptive Segmentation)'
-      },
-      {
-        src: '/projects/computer-vision/sobel.png',
-        caption: 'Directional Sobel Convolution Kernels & Gradient Operator Matrix'
-      },
-      {
-        src: '/projects/computer-vision/sobel-display.jpg',
-        caption: 'Computer Vision Real-Time Analysis & Dynamic Gradient Pipeline'
-      }
-    ],
-
-    technologies: [
-      'Python',
-      'OpenCV',
-      'Streamlit',
-      'NumPy',
-      'Computer Vision',
-      'Image Processing',
-      'Sobel Filter',
-      'Streamlit Cloud'
-    ],
-
-    links: {
-      github: 'https://github.com/dappahsn/Computer-Vision-Kelompok-1',
-      demo: 'https://computer-vision-kelompok-1.streamlit.app/'
-    },
-
-    featured: false
-  },
-
-  {
-    id: 6,
     slug: 'biocompost-buddy',
     title: 'BioCompost Buddy - Smart IoT Composting System',
     category: 'IoT',
-    year: '2024',
+    year: '2025',
 
     description:
       'A nationally funded Top 180 Innovillage project delivering an integrated smart IoT composting machine and web monitoring platform with automated shredding, mechanized aeration, and multi-sensor fermentation tracking for rural food security in Aceh Besar.',
@@ -896,7 +884,7 @@ export const projects = [
 
     role: 'Lead IoT Engineer & Full-Stack Developer',
 
-    image: '/projects/biocompost-buddy.webp',
+    image: '/projects/biocompost-buddy/biocompost-banner.jpg',
     images: [
       {
         src: '/projects/biocompost-buddy/biocompost-banner.jpg',
@@ -942,11 +930,152 @@ export const projects = [
       demo: 'https://dappahsn.github.io/BioCompostBuddy/'
     },
 
-    featured: false
+    featured: true
+  },
+
+  {
+    id: 6,
+    slug: 'desa-berdaya-pln',
+    title: 'Desa Berdaya PLN',
+    category: 'Web',
+    year: '2025',
+
+    description:
+      'A comprehensive community empowerment web portal built for PT PLN (Persero) UID Aceh, showcasing local Acehnese UMKM products, village initiatives, educational English courses, and sustainability waste management programs.',
+
+    overview:
+      'Desa Berdaya PLN is a multi-page community empowerment portal developed during an internship at PT PLN (Persero) Unit Induk Distribusi Aceh. The platform centralizes and visualizes CSR initiatives across Aceh villages, featuring interactive catalogs for local UMKM artisans, village distribution maps across Aceh, educational programs like GM English Course, and environmental sustainability projects like Bank Sampah USK.',
+
+    problem:
+      'Prior to this platform, information regarding PLN-supported village programs, empowered UMKM micro-enterprises, and community development initiatives across Aceh was fragmented and difficult for the public and stakeholders to discover.',
+
+    solution:
+      'Engineered a modern, responsive web application featuring a multi-page navigation architecture, dynamic category filtering for local crafts and traditional culinary products (Kupiah Meukeutop, Songket, Kue Bhoi, Ikan Keumamah), interactive village distribution mapping, image carousels for program documentation, interactive FAQ accordions, and an integrated contact system.',
+
+    features: [
+      'Comprehensive Landing Portal: Dynamic hero carousel, program highlight cards, interactive Aceh distribution map, FAQ accordion, and inquiry form',
+      'UMKM Product Showcase & Filter: Categorized gallery filtering across Food, Clothing, Headwear, Bags, Handicrafts, and Household Tools',
+      'Education & English Course Hub: Dedicated module showcasing the GM English Course initiative in Gampong Geuceu Meunara to improve youth global competence',
+      'Environmental Sustainability / Bank Sampah: Documentation of organic & inorganic waste processing machines (hydraulic presses, shredders, grinders) at USK',
+      'Responsive Multi-Device Layout: Built with mobile-first principles, fluid Bootstrap grid system, and high-contrast accessible typography',
+      'Interactive Media Carousels: Integrated multi-image sliders for event documentation and program reporting'
+    ],
+
+    role: 'Front-End Web Developer',
+
+    image: '/projects/desa-berdaya/desa-berdaya-cover.jpg',
+    images: [
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-cover.jpg',
+        caption: 'Desa Berdaya PLN Hero Banner & Official Welcome Interface'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-home.png',
+        caption: 'Desa Berdaya PLN Home Page & Interactive Village Distribution'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-umkm.png',
+        caption: 'Local Acehnese UMKM Product Catalog & Dynamic Filter System'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-kursus.png',
+        caption: 'GM English Course - Youth Education Empowerment Page'
+      },
+      {
+        src: '/projects/desa-berdaya/desa-berdaya-bank-sampah.png',
+        caption: 'Bank Sampah & Environmental Waste Management System'
+      }
+    ],
+
+    technologies: [
+      'HTML5',
+      'CSS3',
+      'JavaScript',
+      'Bootstrap 5',
+      'Chart.js',
+      'Google Maps API',
+      'Responsive Web Design',
+      'GitHub Pages'
+    ],
+
+    links: {
+      github: 'https://github.com/dappahsn/Desa-Berdaya-PLN-UID-ACEH',
+      demo: 'https://dappahsn.github.io/Desa-Berdaya-PLN-ACEH/index.html'
+    },
+
+    featured: true
   },
 
   {
     id: 7,
+    slug: 'adaptive-sobel-edge-detection',
+    title: 'Adaptive Sobel Edge Detection',
+    category: 'Machine Learning',
+    year: '2024',
+
+    description:
+      'An interactive Computer Vision web application built with Python, OpenCV, and Streamlit, implementing adaptive thresholding on the classical Sobel operator for robust real-time image edge detection.',
+
+    overview:
+      'Developed under the guidance of Kahlil Muchtar, Ph.D. at Universitas Syiah Kuala, this Computer Vision project enhances traditional Sobel edge detection by dynamically adjusting gradient sensitivity based on local neighborhood contrast and pixel intensities. Built with an intuitive Streamlit web interface, users can upload custom imagery, dynamically tune threshold parameters, and inspect real-time edge segmentation maps.',
+
+    problem:
+      'Standard Sobel operators rely on fixed global thresholding and rigid convolution kernels, causing poor boundary detection on images with uneven illumination, low contrast, or noisy backgrounds.',
+
+    solution:
+      'Engineered an adaptive Sobel operator algorithm in Python with OpenCV and NumPy that computes directional gradient magnitudes (Gx and Gy) with local neighborhood threshold adaptation. Deployed on Streamlit Cloud with an interactive web UI allowing instant parameter manipulation and side-by-side visual analysis.',
+
+    features: [
+      'Adaptive Gradient Sensitivity: Dynamically adjusts threshold levels based on local image contrast to minimize noise while preserving critical boundary details',
+      'Interactive Streamlit Web Dashboard: Upload custom images and tweak filter parameters (kernel size, sensitivity, threshold) with instant visual feedback',
+      'Directional Gradient Computation: Calculates horizontal (Gx) and vertical (Gy) spatial gradient derivatives for complete 2D edge magnitude mapping',
+      'Real-Time Computer Vision Pipeline: High-speed matrix convolutions powered by OpenCV and NumPy for seamless image rendering',
+      'Academic Research Supervision: Guided by Kahlil Muchtar, Ph.D., bridging theoretical digital image processing with interactive web deployment'
+    ],
+
+    role: 'Computer Vision Developer',
+
+    image: '/projects/computer-vision/sobel-display.jpg',
+    images: [
+      {
+        src: '/projects/computer-vision/sobel-streamlit-overview.jpg',
+        caption: 'Adaptive Sobel Edge Detection Streamlit Web Dashboard & Comparison Matrix'
+      },
+      {
+        src: '/projects/computer-vision/sobel-streamlit-analysis.png',
+        caption: 'Interactive Parameter Tuning (Manual Threshold vs. Otsu Adaptive Segmentation)'
+      },
+      {
+        src: '/projects/computer-vision/sobel.png',
+        caption: 'Directional Sobel Convolution Kernels & Gradient Operator Matrix'
+      },
+      {
+        src: '/projects/computer-vision/sobel-display.jpg',
+        caption: 'Computer Vision Real-Time Analysis & Dynamic Gradient Pipeline'
+      }
+    ],
+
+    technologies: [
+      'Python',
+      'OpenCV',
+      'Streamlit',
+      'NumPy',
+      'Computer Vision',
+      'Image Processing',
+      'Sobel Filter',
+      'Streamlit Cloud'
+    ],
+
+    links: {
+      github: 'https://github.com/dappahsn/Computer-Vision-Kelompok-1',
+      demo: 'https://computer-vision-kelompok-1.streamlit.app/'
+    },
+
+    featured: false
+  },
+
+  {
+    id: 8,
     slug: 'iepoma',
     title: 'IePoma - Smart Wastewater Recycling for Irrigation',
     category: 'IoT',
@@ -975,7 +1104,7 @@ export const projects = [
 
     role: 'Embedded Systems & IoT Developer',
 
-    image: '/projects/iepoma.webp',
+    image: '/projects/iepoma/iepoma-hardware-setup.jpg',
     images: [
       {
         src: '/projects/iepoma/iepoma-hardware-setup.jpg',
@@ -1015,7 +1144,7 @@ export const projects = [
   },
 
   {
-    id: 8,
+    id: 9,
     slug: 'trafficsense',
     title: 'TrafficSense - Smart Acoustic Traffic Monitoring',
     category: 'IoT',
@@ -1044,7 +1173,7 @@ export const projects = [
 
     role: 'Full-Stack IoT Developer & Embedded Engineer',
 
-    image: '/projects/trafficsense.webp',
+    image: '/projects/trafficsense/trafficsense-mockup.png',
     images: [
       {
         src: '/projects/trafficsense/trafficsense-mockup.png',
@@ -1085,7 +1214,7 @@ export const projects = [
   },
 
   {
-    id: 9,
+    id: 10,
     slug: '3d-reconstruction-meshroom',
     title: 'Interactive 3D Electronics with Meshroom & Three.js',
     category: 'Web',
@@ -1114,7 +1243,7 @@ export const projects = [
 
     role: 'Computer Graphics & Web 3D Developer',
 
-    image: '/projects/meshroom.webp',
+    image: '/projects/meshroom/meshroom-hero.jpg',
     images: [
       {
         src: '/projects/meshroom/meshroom-hero.jpg',
@@ -1149,6 +1278,148 @@ export const projects = [
     links: {
       github: 'https://github.com/dappahsn/Group-2---Computer-Graphics',
       demo: 'https://dappahsn.github.io/Group-2---Computer-Graphics/'
+    },
+
+    featured: false
+  },
+
+  {
+    id: 11,
+    slug: 'lifegen-health-companion',
+    title: 'LifeGen - Health & Fitness Companion',
+    category: 'UI/UX Design',
+    year: '2023',
+
+    description:
+      'National-level UI/UX competition finalist project at INFEST 9.0. A health and wellness companion mobile app designed in Figma with intuitive user flows, calorie tracking, food logging, and daily activity monitoring.',
+
+    overview:
+      'LifeGen is a modern health and fitness companion mobile application designed to empower users to build sustainable lifestyle habits. Developed as a national finalist entry for the UI/UX Design Competition at INFEST 9.0 (Informatics Festival), the project encompasses full-cycle product design—from empathy-driven user research and wireframing to high-fidelity interactive prototyping and design systems in Figma.',
+
+    problem:
+      'Many individuals struggle to maintain consistent fitness routines due to overwhelming, complicated tracking apps with steep learning curves, cluttered user interfaces, and lack of motivational habit-forming feedback.',
+
+    solution:
+      'Designed an intuitive, motivating mobile experience centered on four core pillars: calorie tracking (burned vs. consumed), step counting with daily milestones, frictionless meal logging, and progress insights. Designed in Figma with a full interactive prototype flow from onboarding to daily dashboard tracking.',
+
+    features: [
+      'National Finalist Recognized: Selected as Finalist in the national UI/UX Design Competition at INFEST 9.0 (Informatics Festival 2023)',
+      'Comprehensive Figma Interactive Prototype: Fully interactive prototyping flow including onboarding questionnaire, authentication, dashboard, meal logging diary, and profile settings',
+      'Calorie & Nutrition Tracking: Intuitive calorie ring visualization comparing daily calories consumed against active energy burned',
+      'Step & Activity Monitoring: Daily step goal progress bars with distance, active minutes, and milestone badges',
+      'Food & Meal Intake Logging: Quick-add food journal with nutritional macro breakdown (carbs, proteins, fats)',
+      'Design System & Component Library: Structured Figma components, cohesive energetic orange brand identity, accessible typography, and mobile UX standards'
+    ],
+
+    role: 'Lead UI/UX Designer & Product Researcher',
+
+    image: '/projects/lifegen/lifegen-mockup.png',
+    images: [
+      {
+        src: '/projects/lifegen/lifegen-mockup.png',
+        caption: 'LifeGen Mobile App Dual Device Mockup (Splash & Dashboard UI)'
+      },
+      {
+        src: '/projects/lifegen/lifegen-dashboard.png',
+        caption: 'LifeGen Main Dashboard - Calorie Ring Tracker, Daily Foot Steps & Activity Metrics'
+      },
+      {
+        src: '/projects/lifegen/lifegen-splash.png',
+        caption: 'LifeGen Splash & Brand Launch Screen Interface'
+      },
+      {
+        src: '/projects/lifegen/lifegen-figma-flow.png',
+        caption: 'Figma Interactive Prototyping Flow Map & Information Architecture'
+      },
+      {
+        src: '/projects/lifegen/lifegen-competition-finalist.png',
+        caption: 'National UI/UX Finalist Presentation at INFEST 9.0 (Informatics Festival 2023)'
+      }
+    ],
+
+    technologies: [
+      'Figma',
+      'UI/UX Design',
+      'Interactive Prototyping',
+      'User Research',
+      'Design Thinking',
+      'Design Systems',
+      'Wireframing',
+      'Mobile UX'
+    ],
+
+    links: {
+      github: '',
+      demo: 'https://www.figma.com/proto/MIYprCXiJ8d9SDMZA5kMYT/Lifegen?page-id=0%3A1&node-id=48-3636&p=f&viewport=488%2C591%2C0.18&t=ywpG479uWKZQYhzF-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=48%3A3636&show-proto-sidebar=1'
+    },
+
+    featured: true
+  },
+
+  {
+    id: 12,
+    slug: 'veggieneed',
+    title: 'VeggieNeed - Farm-to-Table Marketplace',
+    category: 'UI/UX Design',
+    year: '2023',
+
+    description:
+      'A conceptual farm-to-table digital marketplace designed in Figma connecting local vegetable growers and farmers directly with consumers through an intuitive, accessible mobile UI/UX experience.',
+
+    overview:
+      'VeggieNeed is a user-centered mobile marketplace application designed to bridge the gap between local agricultural farmers and urban households. Developed under the mentorship of Rahmad Dawood at Universitas Syiah Kuala, the project translates comprehensive user research and persona modeling into intuitive wireframes and interactive Figma prototypes, facilitating seamless crop discovery, direct producer purchasing, and community-driven fair trade.',
+
+    problem:
+      'Smallholder vegetable farmers often struggle with unfair intermediary markups and limited market access, while conscious consumers find it difficult to source fresh, affordable, and ethically grown local organic produce.',
+
+    solution:
+      'Designed an accessible, community-oriented mobile platform in Figma featuring categorized harvest search ("Cari Hasil Panen"), promotional seasonal bundles ("Plenti Plenti" & "VegDiet"), direct farmer messaging, streamlined cart checkout, and clear order tracking flows.',
+
+    features: [
+      'Farm-to-Table Discovery: Categorized marketplace browsing with instant harvest search and agricultural category filters',
+      'Interactive Figma High-Fidelity Prototype: Seamless end-to-end user journeys from splash onboarding to product checkout and order management',
+      'Promotional & Seasonal Campaign Feeds: Engaging promotional cards and curated dietary bundles (e.g. "Plenti Plenti", "VegDiet")',
+      'Direct Buyer-Seller Communication: Integrated chat and inquiry channels fostering direct community relationships with local farmers',
+      'Accessible UI Design System: Organic green visual identity, high-contrast readable typography, and intuitive mobile ergonomics',
+      'User-Centered Design Methodology: Grounded in empathy research, user personas, and iterative wireframe usability testing'
+    ],
+
+    role: 'Lead UI/UX Designer & Product Researcher',
+
+    image: '/projects/veggieneed/veggieneed-mockup.png',
+    images: [
+      {
+        src: '/projects/veggieneed/veggieneed-mockup.png',
+        caption: 'VeggieNeed Mobile App Dual Device Mockup (Splash & Marketplace UI)'
+      },
+      {
+        src: '/projects/veggieneed/veggieneed-home.png',
+        caption: 'VeggieNeed Marketplace Home Screen - Harvest Search, Promotional Banners & Navigation'
+      },
+      {
+        src: '/projects/veggieneed/veggieneed-splash.png',
+        caption: 'VeggieNeed Onboarding & Brand Splash Screen ("Kenali petani Anda, kenali makanan Anda")'
+      },
+      {
+        src: '/projects/veggieneed/veggieneed-logo.png',
+        caption: 'VeggieNeed Brand Identity & Organic Leaf Shopping Cart Logo'
+      }
+    ],
+
+    technologies: [
+      'Figma',
+      'UI/UX Design',
+      'Interactive Prototyping',
+      'User Research',
+      'Design Systems',
+      'Wireframing',
+      'Persona Building',
+      'Mobile UX'
+    ],
+
+    links: {
+      github: '',
+      demo: 'https://www.figma.com/proto/GJKRbnFwVvOZUCtw7SbOdc/Veggieneed?page-id=0%3A1&node-id=1685-3385&p=f&viewport=496%2C172%2C0.31&t=f0GegnLakMD2UK4A-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=104%3A252'
     },
 
     featured: false
